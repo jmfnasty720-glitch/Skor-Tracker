@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#1565C0">
-<meta name="description" content="Skor Tracker - Track scores for Okey 101, Racing Demons, Turkish 51, Gin Rummy and more">
+<meta name="description" content="Skor Tracker - track scores for Okey 101, Racing Demons, Turkish 51, Gin Rummy and Oklahoma Gin">
 <title>Skor Tracker</title>
 <link rel="apple-touch-icon" href="icon.png">
 <link rel="icon" type="image/png" href="icon.png">
@@ -316,32 +316,40 @@ input:focus,select:focus{border-color:var(--blue)}
 .okla-card-suit-red{color:var(--red)}
 .okla-card-note{font-size:11px;color:var(--accent);font-weight:700;margin-top:2px}
 
-/* MODE BAR */
-.mode-bar{background:var(--blue-dark);display:flex;align-items:center;justify-content:space-between;padding:9px 18px;flex-shrink:0;border-bottom:2px solid rgba(255,255,255,0.1)}
-.mode-label{color:white;font-size:12px;font-weight:700;letter-spacing:0.5px}
-.mode-status{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px}
-.mode-status.online{background:var(--green);color:white}
-.mode-status.offline{background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.6)}
-.mode-toggle-switch{width:44px;height:24px;background:rgba(255,255,255,0.2);border-radius:12px;position:relative;cursor:pointer;transition:background 0.2s;flex-shrink:0;border:none;outline:none}
-.mode-toggle-switch.on{background:var(--green)}
-.mode-toggle-switch::after{content:'';position:absolute;width:18px;height:18px;background:white;border-radius:50%;top:3px;left:3px;transition:left 0.2s;box-shadow:0 1px 4px rgba(0,0,0,0.3)}
-.mode-toggle-switch.on::after{left:23px}
-.account-btn{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);color:white;border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;display:flex;align-items:center;gap:5px}
+/* ── HOME ACCOUNT BAR ── */
+.account-bar{background:var(--blue-dark);display:flex;align-items:center;justify-content:space-between;padding:8px 16px;flex-shrink:0;border-bottom:2px solid rgba(255,255,255,0.08)}
+.account-bar-status{display:flex;align-items:center;gap:7px}
+.online-dot{width:8px;height:8px;border-radius:50%;background:#bbb;flex-shrink:0}
+.online-dot.online{background:#4caf50;box-shadow:0 0 6px rgba(76,175,80,0.6)}
+.account-bar-label{color:rgba(255,255,255,0.7);font-size:11px;font-weight:700;letter-spacing:0.5px}
+.account-btn-home{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);color:white;border-radius:20px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;display:flex;align-items:center;gap:5px}
+
+/* ── ACCOUNT SCREEN ── */
 #screen-account{background:var(--off-white);overflow-y:auto}
 .account-hero{background:linear-gradient(160deg,var(--blue-dark),var(--blue));padding:28px 20px 22px;text-align:center;color:white;flex-shrink:0}
-.account-avatar{width:72px;height:72px;background:rgba(255,255,255,0.2);border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:32px;border:3px solid rgba(255,255,255,0.35)}
+.account-avatar{width:72px;height:72px;background:rgba(255,255,255,0.2);border-radius:50%;margin:0;display:flex;align-items:center;justify-content:center;font-size:32px;border:3px solid rgba(255,255,255,0.35);overflow:hidden}
 .account-username{font-family:'Oswald',sans-serif;font-size:24px;font-weight:700;letter-spacing:0.5px}
 .account-since{font-size:11px;opacity:0.65;margin-top:3px}
+
 .friends-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:white;border-radius:var(--radius-sm);margin-bottom:8px;border:1px solid var(--border)}
-.friends-avatar{width:40px;height:40px;background:var(--blue-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;border:2px solid var(--blue-mid)}
+.friends-avatar{width:40px;height:40px;background:var(--blue-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;border:2px solid var(--blue-mid);overflow:hidden}
 .friends-name{font-weight:800;font-size:14px;color:var(--text)}
-.friends-stats{font-size:11px;color:var(--text-light);font-weight:600;margin-top:1px}
-.friends-badge{margin-left:auto;background:var(--blue-pale);color:var(--blue);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:800}
+
+/* ── ONLINE PLAYER STYLING (neon cyan) ── */
+.online-player-name{color:#00BCD4;font-weight:900;}
+.sps-name.online-player{color:#00E5FF;text-shadow:0 0 4px rgba(0,229,255,0.4)}
+
+/* ── FRIEND CHIPS ON GAME SETUP ── */
+.friend-chip{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;border-radius:20px;background:var(--blue-pale);border:2px solid var(--blue-mid);font-size:12px;font-weight:800;color:var(--blue);cursor:pointer;transition:all 0.15s;font-family:'Nunito',sans-serif}
+.friend-chip:active{transform:scale(0.95)}
+.friend-chip.online-chip{background:rgba(0,188,212,0.1);border-color:#00BCD4;color:#00838F}
+
+/* ── LIVE STANDINGS ── */
 .standings-btn{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:var(--gold);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;white-space:nowrap;letter-spacing:0.3px;margin-top:6px;width:100%;transition:background 0.15s}
 .standings-btn:active{background:rgba(255,255,255,0.2)}
 .standings-modal-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;margin-bottom:8px;border:1px solid var(--border)}
 .standings-modal-row.s-rank-1{background:linear-gradient(135deg,rgba(255,213,79,0.15),rgba(255,213,79,0.05));border-color:rgba(255,213,79,0.5)}
-.standings-modal-row.s-rank-last{background:rgba(200,40,40,0.04);border-color:rgba(200,40,40,0.15)}
+.standings-modal-row.s-rank-last{background:rgba(200,40,40,0.04)}
 .s-rank-num{font-family:'Oswald',sans-serif;font-size:26px;font-weight:700;color:var(--text-light);min-width:28px;text-align:center}
 .s-rank-num.gold{color:var(--gold)}
 .s-emoji{font-size:24px;line-height:1}
@@ -349,34 +357,16 @@ input:focus,select:focus{border-color:var(--blue)}
 .s-name.gold{color:#7a5500}
 .s-score{font-family:'Oswald',sans-serif;font-size:24px;font-weight:700;color:var(--text);text-align:right}
 .s-score.gold{color:var(--gold)}
-.sync-indicator{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:5px 11px;border-radius:20px;margin-bottom:10px;width:fit-content}
-.sync-indicator.synced{background:var(--green-light);color:var(--green)}
-.sync-indicator.syncing{background:var(--blue-pale);color:var(--blue)}
-.sync-indicator.offline-ind{background:#F5F5F5;color:#999}
-.sync-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.sync-indicator.synced .sync-dot{background:var(--green)}
-.sync-indicator.syncing .sync-dot{background:var(--blue);animation:pulse-dot 1s infinite}
-.sync-indicator.offline-ind .sync-dot{background:#bbb}
-.shared-game-card{background:white;border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:10px;border:1px solid var(--border);cursor:pointer}
-.shared-game-card:active{box-shadow:var(--shadow-lg)}
+
+/* ── SHARED GAME CARDS ── */
+.shared-game-card{background:white;border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:10px;border:1px solid var(--border)}
 .sgc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
 .sgc-game{font-family:'Oswald',sans-serif;font-size:14px;color:var(--blue);font-weight:700;letter-spacing:0.4px}
 .sgc-date{font-size:10px;color:var(--text-light);font-weight:600}
-.sgc-player-chip{display:flex;align-items:center;gap:4px;background:var(--blue-pale);border-radius:20px;padding:3px 10px;font-size:12px;font-weight:700;color:var(--blue);display:inline-flex}
-.sgc-player-chip.winner{background:linear-gradient(135deg,rgba(255,213,79,0.3),rgba(255,213,79,0.1));color:#7a5500;border:1px solid rgba(255,213,79,0.4)}
-.online-banner{background:linear-gradient(135deg,var(--green),#1b5e20);border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.online-banner-text{color:white;font-size:13px;font-weight:700;flex:1}
-.online-banner-icon{font-size:22px}
-/* Online player colours */
-.online-player-name{color:#00E5FF;font-weight:900;text-shadow:0 0 6px rgba(0,229,255,0.4);}
-.friend-chip{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;border-radius:20px;background:var(--blue-pale);border:2px solid var(--blue-mid);font-size:12px;font-weight:800;color:var(--blue);cursor:pointer;transition:all 0.15s;}
-.friend-chip:active{transform:scale(0.95);}
-.friend-chip.online-chip{background:rgba(0,229,255,0.1);border-color:#00E5FF;color:#007a99;}
-.friend-chip.selected-chip{background:var(--blue);color:white;border-color:var(--blue);}
-.sps-name.online-player{color:#00E5FF;}
-/* PWA banner flex */
-#pwaBanner{display:none;}
-#pwaBanner.show{display:flex;}
+
+/* ── PWA INSTALL BANNER ── */
+#pwaBanner{display:none;background:linear-gradient(135deg,var(--blue-dark),var(--blue));border-radius:var(--radius);padding:14px 16px;margin-bottom:12px;align-items:center;gap:12px}
+#pwaBanner.show{display:flex}
 </style>
 </head>
 <body>
@@ -389,12 +379,12 @@ input:focus,select:focus{border-color:var(--blue)}
     <div class="hero-wordmark">SKOR <span>TRACKER</span></div>
     <div class="hero-sub">Choose your game</div>
   </div>
-  <div class="mode-bar">
-    <div style="display:flex;align-items:center;gap:8px;">
-      <span id="onlineStatusDot" style="width:8px;height:8px;border-radius:50%;background:#bbb;flex-shrink:0;"></span>
-      <span class="mode-label" id="onlineStatusText">Offline</span>
+  <div class="account-bar">
+    <div class="account-bar-status">
+      <span class="online-dot" id="onlineStatusDot"></span>
+      <span class="account-bar-label" id="onlineStatusText">OFFLINE</span>
     </div>
-    <button class="account-btn" onclick="openAccountScreen()" id="homeAccountBtn">👤 Sign In</button>
+    <button class="account-btn-home" onclick="openAccountScreen()" id="homeAccountBtn">👤 Sign In</button>
   </div>
   <div class="home-body">
 
@@ -516,16 +506,6 @@ input:focus,select:focus{border-color:var(--blue)}
       <div class="fgc-accent"></div>
     </div>
 
-    <!-- PWA Install Banner -->
-    <div id="pwaBanner" style="display:none;background:linear-gradient(135deg,var(--blue-dark),var(--blue));border-radius:var(--radius);padding:14px 16px;margin-bottom:12px;display:none;align-items:center;gap:12px;">
-      <img src="icon.png" style="width:44px;height:44px;border-radius:10px;flex-shrink:0;" onerror="this.style.display='none'">
-      <div style="flex:1;">
-        <div style="color:white;font-weight:800;font-size:14px;">Add to Home Screen</div>
-        <div style="color:rgba(255,255,255,0.7);font-size:11px;font-weight:600;">Install Skor Tracker as an app</div>
-      </div>
-      <button class="btn btn-gold btn-sm" onclick="pwaInstall()" id="pwaInstallBtn">Install</button>
-      <button style="background:none;border:none;color:rgba(255,255,255,0.5);font-size:18px;cursor:pointer;padding:4px;" onclick="document.getElementById('pwaBanner').style.display='none'">✕</button>
-    </div>
     <div class="home-footer" onclick="adminTap()" style="cursor:default;user-select:none;">Skor Tracker V1.1.1</div>
   </div>
 </div>
@@ -542,85 +522,6 @@ input:focus,select:focus{border-color:var(--blue)}
   <div class="results-actions">
     <button class="btn btn-gold btn-full" id="resultsContinueBtn" onclick="resultsContinue()">▶ Play Again (Same Players)</button>
     <button class="btn btn-outline btn-full" style="background:rgba(255,255,255,0.08);color:white;border-color:rgba(255,255,255,0.25);" onclick="showScreen('home')">🏠 Home</button>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════════════
-     SCREEN: ACCOUNT
-════════════════════════════════════════════════════════ -->
-<div id="screen-account" class="screen">
-  <div class="topbar">
-    <button class="topbar-back" onclick="goHome()">‹</button>
-    <div class="topbar-title">MY <span>ACCOUNT</span></div>
-    <div></div>
-  </div>
-  <div id="acct-login-view">
-    <div style="padding:24px 18px;">
-      <div class="setup-header" style="margin-bottom:20px;">
-        <h2>👤 SKOR ACCOUNT</h2>
-        <p>Save games online &amp; share scores with friends</p>
-      </div>
-      <div class="card">
-        <div class="card-title">Sign In or Create Account</div>
-        <div class="input-group"><label>Username</label><input type="text" id="acctUsername" placeholder="e.g. BigAli" maxlength="20" autocomplete="username"></div>
-        <div class="input-group"><label>PIN (4 digits)</label><input type="password" id="acctPin" placeholder="e.g. 1234" maxlength="4" inputmode="numeric" autocomplete="current-password"></div>
-        <div id="acctError" style="color:var(--red);font-size:12px;font-weight:700;display:none;margin-bottom:10px;padding:8px;background:var(--red-light);border-radius:6px;"></div>
-        <button class="btn btn-primary btn-full" id="acctLoginBtn" onclick="acctLogin()" style="margin-bottom:8px;">Sign In / Create Account</button>
-        <p style="font-size:11px;color:var(--text-light);text-align:center;">New usernames are created automatically. Works offline too.</p>
-      </div>
-      <div id="acctNetworkNote" style="display:none;" class="card" style="border:1px solid var(--accent);background:var(--accent-light);">
-        <div style="font-size:12px;color:var(--accent);font-weight:700;">⚠️ No internet connection — your account will be saved locally and synced when back online.</div>
-      </div>
-    </div>
-  </div>
-  <div id="acct-main-view" style="display:none;">
-    <div class="account-hero">
-      <div style="position:relative;width:84px;margin:0 auto 10px;">
-        <div class="account-avatar" id="acctAvatar" onclick="acctOpenPhotoMenu()" style="cursor:pointer;">😎</div>
-        <div style="position:absolute;bottom:0;right:0;background:var(--gold);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,0.3);" onclick="acctOpenPhotoMenu()">✏️</div>
-      </div>
-      <div class="account-username" id="acctDisplayName">Username</div>
-      <div class="account-since" id="acctSince">Member since —</div>
-      <div id="acctOnlineBadge" style="display:inline-block;margin-top:6px;background:var(--green);color:white;border-radius:20px;padding:3px 12px;font-size:11px;font-weight:700;">☁ Online</div>
-    </div>
-    <div style="padding:16px 14px 100px;">
-      <div class="card">
-        <div class="card-title">Friends</div>
-        <div style="font-size:12px;color:var(--text-light);margin-bottom:10px;">Add friends by their username to include them as players in your games.</div>
-        <div style="display:flex;gap:8px;margin-bottom:12px;">
-          <input type="text" id="addFriendInput" placeholder="Friend's username" style="flex:1;margin-bottom:0;">
-          <button class="btn btn-primary btn-sm" onclick="acctAddFriend()" style="white-space:nowrap;">Add ＋</button>
-        </div>
-        <div id="friendsList"><div style="color:var(--text-light);font-size:13px;text-align:center;padding:10px 0;">No friends yet — add some!</div></div>
-      </div>
-      <div class="card">
-        <div class="card-title">Recent Games</div>
-        <div id="onlineGamesList"><div style="color:var(--text-light);font-size:13px;text-align:center;padding:10px 0;">No games yet.</div></div>
-      </div>
-      <button class="btn btn-outline btn-full" onclick="acctSignOut()" style="margin-top:4px;">Sign Out</button>
-    </div>
-  </div>
-</div>
-
-<!-- Photo/Avatar picker modal -->
-<div class="modal-overlay" id="photoPickerModal">
-  <div class="modal">
-    <div class="modal-handle"></div>
-    <div class="modal-title">📸 Profile Photo</div>
-    <p class="modal-sub">Upload a photo or choose an emoji avatar</p>
-    <div style="text-align:center;margin-bottom:16px;">
-      <div id="photoPreview" style="width:80px;height:80px;border-radius:50%;margin:0 auto 12px;background:var(--blue-pale);display:flex;align-items:center;justify-content:center;font-size:38px;border:3px solid var(--blue-mid);overflow:hidden;"></div>
-      <label class="btn btn-primary btn-sm" style="cursor:pointer;display:inline-flex;">
-        📁 Upload Photo
-        <input type="file" id="photoFileInput" accept="image/*" style="display:none;" onchange="acctHandlePhotoUpload(event)">
-      </label>
-    </div>
-    <div style="font-size:12px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Or choose an emoji</div>
-    <div id="emojiGrid" style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:16px;"></div>
-    <div class="confirm-bar">
-      <button class="btn btn-grey" onclick="closeModal('photoPickerModal')">Cancel</button>
-      <button class="btn btn-success" onclick="acctSavePhoto()">✔ Save</button>
-    </div>
   </div>
 </div>
 
@@ -683,12 +584,11 @@ input:focus,select:focus{border-color:var(--blue)}
       </div>
       <div class="card">
         <div class="card-title">Player Names</div>
-        <div style="font-size:11px;color:var(--text-light);margin-bottom:10px;font-weight:600;">Tap a friend's name to add them, or type a name manually.</div>
-        <div id="okeyFriendChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;"></div>
+        <div id="okeyFriendChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;"></div>
         <div id="okeyPlayerNameInputs" style="display:flex;flex-direction:column;gap:10px;"></div>
       </div>
       <button class="btn btn-primary btn-lg" onclick="okeyStartGame()">Start Game ▶</button>
-      <div class="version-tag">Okey 101 v2.0 · Skor Tracker</div>
+
     </div>
     <div class="page" id="okey-page-archive">
       <div class="card-title" style="margin-bottom:10px;">Saved Games</div>
@@ -696,10 +596,7 @@ input:focus,select:focus{border-color:var(--blue)}
     </div>
   </div>
   <div class="sticky-scores" id="okeyStickyScores" style="display:none;">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
-      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:rgba(255,255,255,0.5);">Total Scores</div>
-      <div id="okeySyncBadge" style="display:none;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--green);color:white;">☁ Synced</div>
-    </div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:rgba(255,255,255,0.5);margin-bottom:6px;">Total Scores</div>
     <div class="sticky-scores-inner" id="okeyStickyInner"></div>
     <button class="standings-btn" onclick="showLiveStandings('okey')">🏆 Live Standings</button>
   </div>
@@ -752,8 +649,7 @@ input:focus,select:focus{border-color:var(--blue)}
       </div>
       <div class="card">
         <div class="card-title">Player Names</div>
-        <div style="font-size:11px;color:var(--text-light);margin-bottom:10px;font-weight:600;">Tap a friend's name to add them, or type a name manually.</div>
-        <div id="rdFriendChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;"></div>
+        <div id="rdFriendChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;"></div>
         <div id="rdPlayerInputs" style="display:flex;flex-direction:column;gap:10px;"></div>
       </div>
       <button class="btn btn-primary btn-lg" onclick="rdStartGame()">Start Game ▶</button>
@@ -764,10 +660,7 @@ input:focus,select:focus{border-color:var(--blue)}
     </div>
   </div>
   <div class="sticky-scores" id="rdStickyScores" style="display:none;">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
-      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:rgba(255,255,255,0.5);">Scores · Target <span id="rdStickyTarget">100</span></div>
-      <div id="rdSyncBadge" style="display:none;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--green);color:white;">☁ Synced</div>
-    </div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:rgba(255,255,255,0.5);margin-bottom:6px;">Scores · Target <span id="rdStickyTarget">100</span></div>
     <div class="sticky-scores-inner" id="rdStickyInner"></div>
     <button class="standings-btn" onclick="showLiveStandings('rd')">🏆 Live Standings</button>
   </div>
@@ -823,8 +716,7 @@ input:focus,select:focus{border-color:var(--blue)}
       </div>
       <div class="card">
         <div class="card-title">Player Names</div>
-        <div style="font-size:11px;color:var(--text-light);margin-bottom:10px;font-weight:600;">Tap a friend's name to add them, or type a name manually.</div>
-        <div id="t51FriendChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;"></div>
+        <div id="t51FriendChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;"></div>
         <div id="t51PlayerInputs" style="display:flex;flex-direction:column;gap:10px;"></div>
       </div>
       <button class="btn btn-primary btn-lg" onclick="t51StartGame()">Start Game ▶</button>
@@ -835,7 +727,7 @@ input:focus,select:focus{border-color:var(--blue)}
     </div>
   </div>
   <div class="sticky-scores" id="t51StickyScores" style="display:none;">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;"><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:rgba(255,255,255,0.5);">Total Scores · Lower = Better</div><div id="t51SyncBadge" style="display:none;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--green);color:white;">☁ Synced</div></div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:rgba(255,255,255,0.5);margin-bottom:6px;">Total Scores · Lower = Better</div>
     <div class="sticky-scores-inner" id="t51StickyInner"></div>
     <button class="standings-btn" onclick="showLiveStandings('t51')">🏆 Live Standings</button>
   </div>
@@ -892,8 +784,7 @@ input:focus,select:focus{border-color:var(--blue)}
       <div class="setup-header"><h2>GIN RUMMY</h2><p>2 players · First to 100</p></div>
       <div class="card">
         <div class="card-title">Player Names</div>
-        <div style="font-size:11px;color:var(--text-light);margin-bottom:10px;font-weight:600;">Tap a friend's name to add them, or type a name manually.</div>
-        <div id="ginFriendChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;"></div>
+        <div id="ginFriendChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;"></div>
         <div style="display:flex;flex-direction:column;gap:10px;">
           <div class="input-group" style="margin-bottom:0;"><label>Player 1 (goes first)</label><input type="text" id="ginP0" value="Player 1"></div>
           <div class="input-group" style="margin-bottom:0;"><label>Player 2</label><input type="text" id="ginP1" value="Player 2"></div>
@@ -907,7 +798,7 @@ input:focus,select:focus{border-color:var(--blue)}
     </div>
   </div>
   <div class="sticky-scores" id="ginStickyScores" style="display:none;">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;"><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:rgba(255,255,255,0.5);">Scores · First to 100</div><div id="ginSyncBadge" style="display:none;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--green);color:white;">☁ Synced</div></div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:rgba(255,255,255,0.5);margin-bottom:6px;">Scores · Target 100</div>
     <div class="sticky-scores-inner" id="ginStickyInner"></div>
     <button class="standings-btn" onclick="showLiveStandings('gin')">🏆 Live Standings</button>
   </div>
@@ -972,8 +863,7 @@ input:focus,select:focus{border-color:var(--blue)}
       <div class="setup-header"><h2>OKLAHOMA GIN</h2><p>2 players · First to 100</p></div>
       <div class="card">
         <div class="card-title">Player Names</div>
-        <div style="font-size:11px;color:var(--text-light);margin-bottom:10px;font-weight:600;">Tap a friend's name to add them, or type a name manually.</div>
-        <div id="oklaFriendChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;"></div>
+        <div id="oklaFriendChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;"></div>
         <div style="display:flex;flex-direction:column;gap:10px;">
           <div class="input-group" style="margin-bottom:0;"><label>Player 1 (goes first)</label><input type="text" id="oklaP0" value="Player 1"></div>
           <div class="input-group" style="margin-bottom:0;"><label>Player 2</label><input type="text" id="oklaP1" value="Player 2"></div>
@@ -1003,10 +893,7 @@ input:focus,select:focus{border-color:var(--blue)}
     </div>
   </div>
   <div class="sticky-scores" id="oklaStickyScores" style="display:none;">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
-      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:rgba(255,255,255,0.5);">Scores · Target 100</div>
-      <div id="oklaSyncBadge" style="display:none;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--green);color:white;">☁ Synced</div>
-    </div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:rgba(255,255,255,0.5);margin-bottom:6px;">Scores · Target 100</div>
     <div class="sticky-scores-inner" id="oklaStickyInner"></div>
     <button class="standings-btn" onclick="showLiveStandings('okla')">🏆 Live Standings</button>
   </div>
@@ -1167,16 +1054,92 @@ input:focus,select:focus{border-color:var(--blue)}
   </div>
 </div>
 
+<!-- ════════════════════════════════════════════════════════
+     SCREEN: ACCOUNT
+════════════════════════════════════════════════════════ -->
+<div id="screen-account" class="screen">
+  <div class="topbar">
+    <button class="topbar-back" onclick="goHome()">‹</button>
+    <div class="topbar-title">MY <span>ACCOUNT</span></div>
+    <div></div>
+  </div>
+  <div id="acct-login-view">
+    <div style="padding:24px 18px;">
+      <div class="setup-header" style="margin-bottom:20px;">
+        <h2>👤 SKOR ACCOUNT</h2>
+        <p>Save games online and play with friends</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Sign In or Create Account</div>
+        <div class="input-group"><label>Username</label><input type="text" id="acctUsername" placeholder="e.g. BigAli" maxlength="20" autocomplete="username"></div>
+        <div class="input-group"><label>PIN (4 digits)</label><input type="password" id="acctPin" placeholder="e.g. 1234" maxlength="4" inputmode="numeric"></div>
+        <div id="acctError" style="color:var(--red);font-size:12px;font-weight:700;display:none;margin-bottom:10px;padding:8px;background:var(--red-light);border-radius:6px;"></div>
+        <button class="btn btn-primary btn-full" id="acctLoginBtn" onclick="acctLogin()" style="margin-bottom:8px;">Sign In / Create Account</button>
+        <p style="font-size:11px;color:var(--text-light);text-align:center;">New usernames are created automatically. Works offline.</p>
+      </div>
+    </div>
+  </div>
+  <div id="acct-main-view" style="display:none;">
+    <div class="account-hero">
+      <div style="position:relative;width:84px;margin:0 auto 10px;">
+        <div class="account-avatar" id="acctAvatar" onclick="acctOpenPhotoMenu()" style="cursor:pointer;">😎</div>
+        <div style="position:absolute;bottom:0;right:0;background:var(--gold);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,0.3);" onclick="acctOpenPhotoMenu()">✏️</div>
+      </div>
+      <div class="account-username" id="acctDisplayName">Username</div>
+      <div class="account-since" id="acctSince">Member since —</div>
+      <div id="acctOnlineBadge" style="display:none;margin-top:6px;background:var(--green);color:white;border-radius:20px;padding:3px 12px;font-size:11px;font-weight:700;display:inline-block;">☁ Online</div>
+    </div>
+    <div style="padding:16px 14px 100px;">
+      <div class="card">
+        <div class="card-title">Friends</div>
+        <div style="font-size:12px;color:var(--text-light);margin-bottom:10px;">Add friends by their username. They'll show up in your game setup.</div>
+        <div style="display:flex;gap:8px;margin-bottom:12px;">
+          <input type="text" id="addFriendInput" placeholder="Friend's username" style="flex:1;margin-bottom:0;">
+          <button class="btn btn-primary btn-sm" onclick="acctAddFriend()" style="white-space:nowrap;">Add ＋</button>
+        </div>
+        <div id="friendsList"><div style="color:var(--text-light);font-size:13px;text-align:center;padding:10px 0;">No friends yet.</div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Recent Games</div>
+        <div id="onlineGamesList"><div style="color:var(--text-light);font-size:13px;text-align:center;padding:10px 0;">No games yet.</div></div>
+      </div>
+      <button class="btn btn-outline btn-full" onclick="acctSignOut()" style="margin-top:4px;">Sign Out</button>
+    </div>
+  </div>
+</div>
+
 <!-- Admin Confirm Delete Modal -->
 <div class="modal-overlay" id="adminDeleteModal">
   <div class="modal">
     <div class="modal-handle"></div>
     <div class="modal-title" style="color:var(--red);">⚠️ Delete Account</div>
-    <p class="modal-sub" id="adminDeleteSub">This will permanently delete the account and all associated game data.</p>
+    <p class="modal-sub" id="adminDeleteSub">This will permanently delete the account and all its data.</p>
     <div id="adminDeleteDetails" style="background:var(--red-light);border-radius:8px;padding:12px;margin-bottom:14px;font-size:13px;"></div>
     <div class="confirm-bar">
       <button class="btn btn-grey" onclick="closeModal('adminDeleteModal')">Cancel</button>
-      <button class="btn btn-danger" id="adminDeleteConfirmBtn" onclick="adminConfirmDelete()">🗑 Delete Permanently</button>
+      <button class="btn btn-danger" id="adminDeleteConfirmBtn" onclick="adminConfirmDelete()">🗑 Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- Photo/Avatar picker modal -->
+<div class="modal-overlay" id="photoPickerModal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">📸 Profile Photo</div>
+    <p class="modal-sub">Upload a photo or pick an emoji</p>
+    <div style="text-align:center;margin-bottom:16px;">
+      <div id="photoPreview" style="width:80px;height:80px;border-radius:50%;margin:0 auto 12px;background:var(--blue-pale);display:flex;align-items:center;justify-content:center;font-size:38px;border:3px solid var(--blue-mid);overflow:hidden;"></div>
+      <label class="btn btn-primary btn-sm" style="cursor:pointer;display:inline-flex;">
+        📁 Upload Photo
+        <input type="file" id="photoFileInput" accept="image/*" style="display:none;" onchange="acctHandlePhotoUpload(event)">
+      </label>
+    </div>
+    <div style="font-size:12px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Or choose an emoji</div>
+    <div id="emojiGrid" style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:16px;"></div>
+    <div class="confirm-bar">
+      <button class="btn btn-grey" onclick="closeModal('photoPickerModal')">Cancel</button>
+      <button class="btn btn-success" onclick="acctSavePhoto()">✔ Save</button>
     </div>
   </div>
 </div>
@@ -1186,7 +1149,7 @@ input:focus,select:focus{border-color:var(--blue)}
   <div class="modal">
     <div class="modal-handle"></div>
     <div class="modal-title">🏆 Live Standings</div>
-    <p class="modal-sub" id="standingsModalSub">Current game positions</p>
+    <p class="modal-sub" id="standingsModalSub">Current positions</p>
     <div id="standingsModalBody"></div>
     <div class="confirm-bar" style="margin-top:14px;">
       <button class="btn btn-grey btn-full" onclick="closeModal('standingsModal')">Close</button>
@@ -1358,8 +1321,6 @@ function okeyRenderNameInputs() {
     d.innerHTML = `<label>Player ${i+1}</label><input type="text" id="okeyPname${i}" value="${existing[i]||def}">`;
     el.appendChild(d);
   });
-  const ids = Array.from({length:okeyPlayerCount},(_,i)=>'okeyPname'+i);
-  renderFriendChips('okeyFriendChips', ids);
 }
 
 function okeyStartGame() {
@@ -1720,8 +1681,6 @@ function rdRenderRDInputs() {
     d.innerHTML=`<label>Player ${i+1}</label><input type="text" id="rdPname${i}" value="${existing[i]||'Player '+(i+1)}">`;
     el.appendChild(d);
   }
-  const ids=Array.from({length:rdPlayerCount},(_,i)=>'rdPname'+i);
-  renderFriendChips('rdFriendChips',ids);
 }
 
 function rdStartGame() {
@@ -1800,7 +1759,7 @@ function rdOpenRoundModal() {
     html+=`<div class="player-round-card">
       <div class="prc-name">${p}</div>
       <div style="margin-bottom:8px;">
-        <div class="input-group" style="margin-bottom:0;"><label>Deadwood / Points Scored</label>
+        <div class="input-group" style="margin-bottom:0;"><label>Tally</label>
         <input type="number" id="rdScore_${i}" placeholder="0" min="0" oninput="rdResetPreview()"></div>
       </div>
       <div class="rd-stack-row">
@@ -1900,7 +1859,7 @@ function t51LoadActive(){const id=localStorage.getItem('t51_active');if(!id)retu
 
 function t51ShowTab(tab){document.querySelectorAll('#screen-t51 .tab-btn').forEach((b,i)=>b.classList.toggle('active',['game','setup','archive'][i]===tab));document.querySelectorAll('#screen-t51 .page').forEach(p=>p.classList.remove('active'));document.getElementById('t51-page-'+tab).classList.add('active');if(tab==='archive')t51RenderArchive();if(tab==='game')t51RenderGame();}
 function t51SetCount(n){t51Count=n;document.querySelectorAll('#screen-t51 .pcount-btn').forEach((b,i)=>b.classList.toggle('selected',i+2===n));t51RenderInputs();}
-function t51RenderInputs(){const el=document.getElementById('t51PlayerInputs');const existing=[...el.querySelectorAll('input')].map(i=>i.value);el.innerHTML='';for(let i=0;i<t51Count;i++){const d=document.createElement('div');d.className='input-group';d.style.marginBottom='0';d.innerHTML=`<label>Player ${i+1}</label><input type="text" id="t51Pname${i}" value="${existing[i]||'Player '+(i+1)}">`;el.appendChild(d);}const ids=Array.from({length:t51Count},(_,i)=>'t51Pname'+i);renderFriendChips('t51FriendChips',ids);}
+function t51RenderInputs(){const el=document.getElementById('t51PlayerInputs');const existing=[...el.querySelectorAll('input')].map(i=>i.value);el.innerHTML='';for(let i=0;i<t51Count;i++){const d=document.createElement('div');d.className='input-group';d.style.marginBottom='0';d.innerHTML=`<label>Player ${i+1}</label><input type="text" id="t51Pname${i}" value="${existing[i]||'Player '+(i+1)}">`;el.appendChild(d);}}
 function t51StartGame(){const names=[];for(let i=0;i<t51Count;i++){const v=(document.getElementById('t51Pname'+i)?.value||'').trim();if(!v){showToast('Enter all player names');return;}names.push(v);}Object.assign(t51State,{players:names,rounds:[],gameId:Date.now().toString(),startedAt:new Date().toISOString(),finished:false});t51Save();t51RenderGame();t51ShowTab('game');showToast('Turkish 51 started! 🃏');}
 function t51StartAgain(){Object.assign(t51State,{rounds:[],gameId:Date.now().toString(),startedAt:new Date().toISOString(),finished:false});t51Save();t51RenderGame();t51ShowTab('game');showToast('New game started! 🃏');}
 function t51GetTotals(){const t=t51State.players.map(()=>0);t51State.rounds.forEach(r=>r.scores.forEach((s,i)=>t[i]+=s));return t;}
@@ -2078,7 +2037,7 @@ let _ginRoundData={};
 function ginOpenRoundModal(){
   _ginRoundData={goesDown:-1,gin:-1,deadwood:[0,0]};
   document.getElementById('roundModalTitle').textContent=`Round ${ginState.rounds.length+1} — Gin Rummy`;
-  document.getElementById('roundModalSub').textContent='Select who goes down first, or who makes Gin.';
+  document.getElementById('roundModalSub').textContent='Knock or Gin. GIN = 20 + loser deadwood.';
   document.getElementById('roundSummarySection').style.display='none';
   document.getElementById('roundPreviewBtn').style.display='';
   document.getElementById('roundConfirmBtn').style.display='none';
@@ -2088,8 +2047,8 @@ function ginOpenRoundModal(){
   <div class="card" style="padding:14px;margin-bottom:10px;">
     <div style="font-weight:800;font-size:14px;color:var(--blue);margin-bottom:10px;">🎴 Round Outcome</div>
     <div class="round-options" style="margin-bottom:0;">
-      <button class="ropt-btn" id="ginOptGin0" onclick="ginSetOutcome('gin',0)">🏆 ${p0} — GIN (+20)</button>
-      <button class="ropt-btn" id="ginOptGin1" onclick="ginSetOutcome('gin',1)">🏆 ${p1} — GIN (+20)</button>
+      <button class="ropt-btn" id="ginOptGin0" onclick="ginSetOutcome('gin',0)">🏆 ${p0} — GIN (+20 + DW)</button>
+      <button class="ropt-btn" id="ginOptGin1" onclick="ginSetOutcome('gin',1)">🏆 ${p1} — GIN (+20 + DW)</button>
       <button class="ropt-btn" id="ginOptDown0" onclick="ginSetOutcome('down',0)">↓ ${p0} Goes Down</button>
       <button class="ropt-btn" id="ginOptDown1" onclick="ginSetOutcome('down',1)">↓ ${p1} Goes Down</button>
     </div>
@@ -2113,17 +2072,37 @@ function ginSetOutcome(type, playerIdx) {
   _ginRoundData.goesDown=-1; _ginRoundData.gin=-1;
   ['gin0','gin1','down0','down1'].forEach(id=>{const b=document.getElementById('ginOpt'+id.charAt(0).toUpperCase()+id.slice(1));if(b)b.className='ropt-btn';});
   const section=document.getElementById('ginDeadwoodSection');
+  const undercutNote=document.getElementById('undercutNote');
   if(type==='gin'){
     _ginRoundData.gin=playerIdx;
     document.getElementById('ginOptGin'+playerIdx).className='ropt-btn active-gin';
-    section.style.display='none';
+    // Show deadwood section but only the LOSER's input (winner has 0 deadwood by definition)
+    section.style.display='';
+    // The winner is playerIdx; the loser is 1-playerIdx
+    const loser=1-playerIdx;
+    document.getElementById('ginPCard'+playerIdx).style.display='none';
+    document.getElementById('ginPCard'+loser).style.display='';
+    document.getElementById('ginP0Tag').style.display='none';
+    document.getElementById('ginP1Tag').style.display='none';
+    if(undercutNote) undercutNote.style.display='none';
+    // Update the loser's label to clarify it's their deadwood
+    const loserCard=document.getElementById('ginPCard'+loser);
+    const loserLabel=loserCard.querySelector('label');
+    if(loserLabel) loserLabel.textContent='Loser\'s Deadwood Points (added to GIN bonus)';
   } else {
     _ginRoundData.goesDown=playerIdx;
     document.getElementById('ginOptDown'+playerIdx).className='ropt-btn active-down';
     section.style.display='';
+    document.getElementById('ginPCard0').style.display='';
+    document.getElementById('ginPCard1').style.display='';
     document.getElementById('ginP0Tag').style.display=playerIdx===0?'':'none';
     document.getElementById('ginP1Tag').style.display=playerIdx===1?'':'none';
-    document.getElementById('undercutNote').style.display='';
+    // Reset labels back to default
+    const c0=document.getElementById('ginPCard0').querySelector('label');
+    const c1=document.getElementById('ginPCard1').querySelector('label');
+    if(c0) c0.textContent='Deadwood Points';
+    if(c1) c1.textContent='Deadwood Points';
+    if(undercutNote) undercutNote.style.display='';
   }
   ginResetPreview();
 }
@@ -2135,8 +2114,11 @@ function ginPreview(){
   if(gd.gin<0&&gd.goesDown<0){showToast('Select an outcome first');return;}
   let scores=[0,0]; let desc=['',''];
   if(gd.gin>=0){
-    scores[gd.gin]=20; scores[1-gd.gin]=0;
-    desc[gd.gin]='🏆 GIN! +20 pts'; desc[1-gd.gin]='—';
+    const winner=gd.gin; const loser=1-winner;
+    const loserDW=parseInt(document.getElementById('ginDW'+loser)?.value)||0;
+    scores[winner]=20+loserDW; scores[loser]=0;
+    desc[winner]=loserDW>0?`🏆 GIN! +20 + ${loserDW} deadwood = +${scores[winner]}`:'🏆 GIN! +20 pts';
+    desc[loser]='—';
   } else {
     const dw0=parseInt(document.getElementById('ginDW0')?.value)||0;
     const dw1=parseInt(document.getElementById('ginDW1')?.value)||0;
@@ -2248,7 +2230,7 @@ function oklaOpenRoundModal(){
   const cv=card?oklaCardValue(card.rank):0;
   _oklaRoundData={goesDown:-1,gin:-1,deadwood:[0,0],card:card?{...card}:null};
   document.getElementById('roundModalTitle').textContent=`Round ${oklaState.rounds.length+1} — Oklahoma Gin`;
-  document.getElementById('roundModalSub').textContent=card?`Starter card: ${card.rank}${card.suit} · Deadwood limit to go down: ≤${cv}`:'';
+  document.getElementById('roundModalSub').textContent=card?`Starter ${card.rank}${card.suit} · Limit ≤${cv} · GIN doubles!`:'GIN scores doubled.';
   document.getElementById('roundSummarySection').style.display='none';
   document.getElementById('roundPreviewBtn').style.display='';
   document.getElementById('roundConfirmBtn').style.display='none';
@@ -2259,8 +2241,8 @@ function oklaOpenRoundModal(){
   <div class="card" style="padding:14px;margin-bottom:10px;">
     <div style="font-weight:800;font-size:14px;color:var(--blue);margin-bottom:10px;">🎴 Round Outcome</div>
     <div class="round-options" style="margin-bottom:0;">
-      <button class="ropt-btn" id="oklaOptGin0" onclick="oklaSetOutcome('gin',0)">🏆 ${p0} — GIN (+20)</button>
-      <button class="ropt-btn" id="oklaOptGin1" onclick="oklaSetOutcome('gin',1)">🏆 ${p1} — GIN (+20)</button>
+      <button class="ropt-btn" id="oklaOptGin0" onclick="oklaSetOutcome('gin',0)">🏆 ${p0} — GIN (×2)</button>
+      <button class="ropt-btn" id="oklaOptGin1" onclick="oklaSetOutcome('gin',1)">🏆 ${p1} — GIN (×2)</button>
       <button class="ropt-btn" id="oklaOptDown0" onclick="oklaSetOutcome('down',0)">↓ ${p0} Goes Down</button>
       <button class="ropt-btn" id="oklaOptDown1" onclick="oklaSetOutcome('down',1)">↓ ${p1} Goes Down</button>
     </div>
@@ -2284,16 +2266,36 @@ function oklaSetOutcome(type,playerIdx){
   _oklaRoundData.goesDown=-1;_oklaRoundData.gin=-1;
   ['Gin0','Gin1','Down0','Down1'].forEach(id=>{const b=document.getElementById('oklaOpt'+id);if(b)b.className='ropt-btn';});
   const section=document.getElementById('oklaDeadwoodSection');
+  // Find the two player cards
+  const cards=section.querySelectorAll('.player-round-card');
   if(type==='gin'){
     _oklaRoundData.gin=playerIdx;
     document.getElementById('oklaOptGin'+playerIdx).className='ropt-btn active-gin';
-    section.style.display='none';
+    // Show deadwood section but only the LOSER's input
+    section.style.display='';
+    const loser=1-playerIdx;
+    if(cards[playerIdx]) cards[playerIdx].style.display='none';
+    if(cards[loser]) cards[loser].style.display='';
+    document.getElementById('oklaP0Tag').style.display='none';
+    document.getElementById('oklaP1Tag').style.display='none';
+    // Update loser's label
+    if(cards[loser]){
+      const lbl=cards[loser].querySelector('label');
+      if(lbl) lbl.textContent='Loser\'s Deadwood Points (added then doubled)';
+    }
   } else {
     _oklaRoundData.goesDown=playerIdx;
     document.getElementById('oklaOptDown'+playerIdx).className='ropt-btn active-down';
     section.style.display='';
+    if(cards[0]) cards[0].style.display='';
+    if(cards[1]) cards[1].style.display='';
     document.getElementById('oklaP0Tag').style.display=playerIdx===0?'':'none';
     document.getElementById('oklaP1Tag').style.display=playerIdx===1?'':'none';
+    // Reset labels
+    for(let i=0;i<cards.length;i++){
+      const lbl=cards[i].querySelector('label');
+      if(lbl) lbl.textContent='Deadwood Points';
+    }
   }
   oklaResetPreview();
 }
@@ -2304,7 +2306,13 @@ function oklaPreview(){
   if(gd.gin<0&&gd.goesDown<0){showToast('Select an outcome first');return;}
   let scores=[0,0];let desc=['',''];
   if(gd.gin>=0){
-    scores[gd.gin]=20;desc[gd.gin]='🏆 GIN! +20';desc[1-gd.gin]='—';
+    const winner=gd.gin; const loser=1-winner;
+    const loserDW=parseInt(document.getElementById('oklaDW'+loser)?.value)||0;
+    const base=20+loserDW;
+    const total=base*2;
+    scores[winner]=total; scores[loser]=0;
+    desc[winner]=`🏆 GIN! (20 + ${loserDW} deadwood) × 2 = +${total}`;
+    desc[loser]='—';
   } else {
     const dw0=parseInt(document.getElementById('oklaDW0')?.value)||0;
     const dw1=parseInt(document.getElementById('oklaDW1')?.value)||0;
@@ -2383,14 +2391,16 @@ else if(ginHasActive){ launchGame('gin'); ginShowTab('game'); }
 else if(oklaHasActive){ launchGame('okla'); oklaShowTab('game'); }
 
 // ════════════════════════════════════════════════════════
-// FIREBASE CONFIG — Replace with YOUR config from Firebase console
+// V1.1.1 ADDITIONS — ACCOUNT, ADMIN, STANDINGS, PWA
+// (Non-breaking: all new functions, no edits to game logic)
 // ════════════════════════════════════════════════════════
-// HOW TO SET UP (free, takes 5 minutes):
-// 1. Go to https://console.firebase.google.com
-// 2. Create a project called "skor-tracker"
-// 3. Add a Web app, copy the firebaseConfig object
-// 4. Enable Firestore Database (start in test mode)
-// 5. Replace the config below with your own values
+
+// ── FIREBASE CONFIG ──────────────────────────────────────
+// To enable online features:
+//   1. Create a Firebase project at console.firebase.google.com
+//   2. Add a Web app, copy the firebaseConfig values below
+//   3. Enable Firestore Database (test mode)
+//   4. Set FIREBASE_ENABLED to true
 const FIREBASE_CONFIG = {
   apiKey: "REPLACE_WITH_YOUR_FIREBASE_API_KEY",
   authDomain: "REPLACE.firebaseapp.com",
@@ -2399,443 +2409,270 @@ const FIREBASE_CONFIG = {
   messagingSenderId: "REPLACE",
   appId: "REPLACE"
 };
-// Set to true once you've added your real Firebase config above
 const FIREBASE_ENABLED = false;
 
-// ════════════════════════════════════════════════════════
-// ACCOUNT + ONLINE SYSTEM
-// ════════════════════════════════════════════════════════
-let _currentUser = null; // { username, pin, joinedAt, friends:[], avatar, photo }
-let _isNetworkOnline = navigator.onLine;
-let _db = null; // Firestore instance if available
-let _pwaInstallPrompt = null;
+// ── State ────────────────────────────────────────────────
+var _currentUser = null;
+var _isNetworkOnline = navigator.onLine;
+var _db = null;
+var _pwaInstallPrompt = null;
 
-// Network detection
-window.addEventListener('online', () => { _isNetworkOnline = true; updateOnlineStatusUI(); if(_currentUser) trySyncUser(); });
-window.addEventListener('offline', () => { _isNetworkOnline = false; updateOnlineStatusUI(); });
+// ── Network status ───────────────────────────────────────
+window.addEventListener('online', function(){ _isNetworkOnline = true; updateOnlineStatusUI(); });
+window.addEventListener('offline', function(){ _isNetworkOnline = false; updateOnlineStatusUI(); });
 
 function updateOnlineStatusUI() {
-  const dot = document.getElementById('onlineStatusDot');
-  const txt = document.getElementById('onlineStatusText');
-  const badge = document.getElementById('acctOnlineBadge');
-  if (dot) { dot.style.background = _isNetworkOnline ? '#4caf50' : '#bbb'; }
-  if (txt) { txt.textContent = _isNetworkOnline ? 'Online' : 'Offline'; }
-  if (badge) { badge.style.display = _isNetworkOnline ? 'inline-block' : 'none'; }
+  var dot = document.getElementById('onlineStatusDot');
+  var txt = document.getElementById('onlineStatusText');
+  if (dot) dot.className = 'online-dot' + (_isNetworkOnline ? ' online' : '');
+  if (txt) txt.textContent = _isNetworkOnline ? 'ONLINE' : 'OFFLINE';
+  var badge = document.getElementById('acctOnlineBadge');
+  if (badge) badge.style.display = (_isNetworkOnline && _currentUser) ? 'inline-block' : 'none';
 }
 
-// Init Firebase if config is set
-async function initFirebase() {
-  if (!FIREBASE_ENABLED) return false;
-  try {
-    if (typeof firebase === 'undefined') {
-      // Load Firebase dynamically
-      await loadScript('https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js');
-      await loadScript('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js');
-    }
-    if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
-    _db = firebase.firestore();
-    _db.enablePersistence().catch(()=>{});
-    return true;
-  } catch(e) { console.warn('Firebase init failed:', e); return false; }
+function updateHomeAccountBtn() {
+  var btn = document.getElementById('homeAccountBtn');
+  if (btn) btn.textContent = _currentUser ? ('👤 ' + _currentUser.username) : '👤 Sign In';
 }
 
+// ── Firebase init (optional) ─────────────────────────────
 function loadScript(src) {
-  return new Promise((res, rej) => {
-    const s = document.createElement('script');
+  return new Promise(function(res, rej){
+    var s = document.createElement('script');
     s.src = src; s.onload = res; s.onerror = rej;
     document.head.appendChild(s);
   });
 }
 
-// ── Storage helpers ─────────────────────────────────────
-// Always saves to localStorage. If Firebase ready, also saves to cloud.
+async function initFirebase() {
+  if (!FIREBASE_ENABLED) return false;
+  try {
+    if (typeof firebase === 'undefined') {
+      await loadScript('https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js');
+      await loadScript('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js');
+    }
+    if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
+    _db = firebase.firestore();
+    try { _db.enablePersistence({synchronizeTabs: true}); } catch(e) {}
+    return true;
+  } catch(e) {
+    console.warn('Firebase init failed:', e);
+    return false;
+  }
+}
+
+// ── Storage helpers (always work, even offline) ─────────
 async function dbSetUser(user) {
-  const key = 'skor_user_' + user.username.toLowerCase();
-  localStorage.setItem(key, JSON.stringify(user));
+  var key = 'skor_user_' + user.username.toLowerCase();
+  try { localStorage.setItem(key, JSON.stringify(user)); } catch(e) {}
   if (_db && _isNetworkOnline) {
     try { await _db.collection('users').doc(user.username.toLowerCase()).set(user); } catch(e) {}
   }
 }
 
 async function dbGetUser(username) {
-  const key = 'skor_user_' + username.toLowerCase();
-  // Try cloud first if online
+  var key = 'skor_user_' + username.toLowerCase();
   if (_db && _isNetworkOnline) {
     try {
-      const doc = await _db.collection('users').doc(username.toLowerCase()).get();
+      var doc = await _db.collection('users').doc(username.toLowerCase()).get();
       if (doc.exists) {
-        const data = doc.data();
-        localStorage.setItem(key, JSON.stringify(data)); // cache locally
+        var data = doc.data();
+        try { localStorage.setItem(key, JSON.stringify(data)); } catch(e) {}
         return data;
       }
     } catch(e) {}
   }
-  // Fall back to localStorage
-  try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch(e) { return null; }
+  try { var v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch(e) { return null; }
 }
 
-async function dbSaveGame(gameEntry) {
-  const key = 'skor_game_' + gameEntry.gameId;
-  localStorage.setItem(key, JSON.stringify(gameEntry));
+async function dbSaveGame(entry) {
+  try { localStorage.setItem('skor_game_' + entry.gameId, JSON.stringify(entry)); } catch(e) {}
   if (_db && _isNetworkOnline) {
     try {
-      await _db.collection('games').doc(gameEntry.gameId).set(gameEntry);
-      // Also tag each online participant
-      for (const p of gameEntry.onlinePlayers||[]) {
-        await _db.collection('users').doc(p.toLowerCase()).collection('games').doc(gameEntry.gameId).set({gameId:gameEntry.gameId,updatedAt:gameEntry.updatedAt});
+      await _db.collection('games').doc(entry.gameId).set(entry);
+      var players = entry.onlinePlayers || [];
+      for (var i = 0; i < players.length; i++) {
+        try { await _db.collection('users').doc(players[i]).collection('games').doc(entry.gameId).set({gameId: entry.gameId, updatedAt: entry.updatedAt}); } catch(e) {}
       }
     } catch(e) {}
   }
 }
 
 async function dbGetUserGames(username) {
-  const results = [];
+  var results = [];
   if (_db && _isNetworkOnline) {
     try {
-      const snap = await _db.collection('users').doc(username.toLowerCase()).collection('games').orderBy('updatedAt','desc').limit(20).get();
-      for (const doc of snap.docs) {
+      var snap = await _db.collection('users').doc(username.toLowerCase()).collection('games').orderBy('updatedAt','desc').limit(20).get();
+      for (var i = 0; i < snap.docs.length; i++) {
         try {
-          const gd = await _db.collection('games').doc(doc.id).get();
+          var gd = await _db.collection('games').doc(snap.docs[i].id).get();
           if (gd.exists) results.push(gd.data());
         } catch(e) {}
       }
       return results;
     } catch(e) {}
   }
-  // local fallback
   try {
-    const keys = Object.keys(localStorage).filter(k=>k.startsWith('skor_game_'));
-    for (const k of keys) {
-      try { const g = JSON.parse(localStorage.getItem(k)); if(g&&(g.onlinePlayers||[]).includes(username.toLowerCase())) results.push(g); } catch(e) {}
+    var keys = Object.keys(localStorage).filter(function(k){ return k.indexOf('skor_game_') === 0; });
+    for (var j = 0; j < keys.length; j++) {
+      try {
+        var g = JSON.parse(localStorage.getItem(keys[j]));
+        if (g && (g.onlinePlayers || []).indexOf(username.toLowerCase()) !== -1) results.push(g);
+      } catch(e) {}
     }
   } catch(e) {}
-  return results.sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt)).slice(0,20);
+  return results.sort(function(a,b){ return new Date(b.updatedAt) - new Date(a.updatedAt); }).slice(0,20);
 }
 
-// ── Online player tracking ────────────────────────────────
-// Track which players in a game have online accounts
-const _gameOnlinePlayers = {}; // gameId -> Set of online usernames
-
-function markPlayerOnline(gameId, username) {
-  if (!_gameOnlinePlayers[gameId]) _gameOnlinePlayers[gameId] = new Set();
-  _gameOnlinePlayers[gameId].add(username.toLowerCase());
-}
-
-function getOnlinePlayers(gameId) {
-  return _gameOnlinePlayers[gameId] ? [..._gameOnlinePlayers[gameId]] : [];
-}
-
+// ── Is this player an online account? ────────────────────
 function isPlayerOnline(playerName) {
-  if (!_currentUser) return false;
+  if (!_currentUser || !playerName) return false;
   if (playerName.toLowerCase() === _currentUser.username.toLowerCase()) return true;
-  return (_currentUser.friends||[]).some(f => f.toLowerCase() === playerName.toLowerCase());
+  var friends = _currentUser.friends || [];
+  for (var i = 0; i < friends.length; i++) {
+    if (friends[i].toLowerCase() === playerName.toLowerCase()) {
+      // Check if friend has an account in cache
+      if (localStorage.getItem('skor_user_' + friends[i].toLowerCase())) return true;
+    }
+  }
+  return false;
 }
 
-// ── Game sync ─────────────────────────────────────────────
-async function syncGameOnline(gameLabel, players, totals, gameId, higherIsBetter, playerMetaList) {
+// ── Game sync (called from save functions below) ────────
+async function syncGameOnline(gameLabel, players, totals, gameId, higherIsBetter) {
   if (!_currentUser) return;
-  const onlinePlayers = (playerMetaList||players).filter(p => {
-    const name = typeof p === 'object' ? p.name : p;
-    return isPlayerOnline(name);
-  }).map(p => (typeof p === 'object' ? p.name : p).toLowerCase());
-
-  const entry = { gameId, gameLabel, players, totals, higherIsBetter,
-    owner: _currentUser.username, onlinePlayers,
-    updatedAt: new Date().toISOString() };
-
-  await dbSaveGame(entry);
-
-  // Update sync badges
-  ['okey','rd','t51','gin','okla'].forEach(g => {
-    const b = document.getElementById(g+'SyncBadge');
-    if (b) b.style.display = _currentUser ? '' : 'none';
-  });
+  var onlinePlayers = [];
+  for (var i = 0; i < players.length; i++) {
+    if (isPlayerOnline(players[i])) onlinePlayers.push(players[i].toLowerCase());
+  }
+  var entry = {
+    gameId: gameId,
+    gameLabel: gameLabel,
+    players: players,
+    totals: totals,
+    higherIsBetter: higherIsBetter,
+    owner: _currentUser.username,
+    onlinePlayers: onlinePlayers,
+    updatedAt: new Date().toISOString()
+  };
+  try { await dbSaveGame(entry); } catch(e) {}
 }
 
-// ── Save function patches ────────────────────────────────
-const _origOkeySave = okeySave;
-function okeySave() { _origOkeySave(); if(_currentUser&&okeyState.gameId) syncGameOnline('Okey 101',okeyState.players,okeyGetTotals(),okeyState.gameId,false); }
+// ── PATCH save functions (additive only) ─────────────────
+if (typeof okeySave === 'function') {
+  var _origOkeySave = okeySave;
+  okeySave = function() {
+    _origOkeySave();
+    if (_currentUser && okeyState.gameId) {
+      try { syncGameOnline('Okey 101', okeyState.players, okeyGetTotals(), okeyState.gameId, false); } catch(e) {}
+    }
+  };
+}
+if (typeof rdSave === 'function') {
+  var _origRdSave = rdSave;
+  rdSave = function() {
+    _origRdSave();
+    if (_currentUser && rdState.gameId) {
+      try { syncGameOnline('Racing Demons', rdState.players, rdGetTotals(), rdState.gameId, true); } catch(e) {}
+    }
+  };
+}
+if (typeof t51Save === 'function') {
+  var _origT51Save = t51Save;
+  t51Save = function() {
+    _origT51Save();
+    if (_currentUser && t51State.gameId) {
+      try { syncGameOnline('Turkish 51', t51State.players, t51GetTotals(), t51State.gameId, false); } catch(e) {}
+    }
+  };
+}
+if (typeof ginSave === 'function') {
+  var _origGinSave = ginSave;
+  ginSave = function() {
+    _origGinSave();
+    if (_currentUser && ginState.gameId) {
+      try { syncGameOnline('Gin Rummy', ginState.players, ginGetTotals(), ginState.gameId, true); } catch(e) {}
+    }
+  };
+}
+if (typeof oklaSave === 'function') {
+  var _origOklaSave = oklaSave;
+  oklaSave = function() {
+    _origOklaSave();
+    if (_currentUser && oklaState.gameId) {
+      try { syncGameOnline('Oklahoma Gin', oklaState.players, oklaGetTotals(), oklaState.gameId, true); } catch(e) {}
+    }
+  };
+}
 
-const _origRdSave = rdSave;
-function rdSave() { _origRdSave(); if(_currentUser&&rdState.gameId) syncGameOnline('Racing Demons',rdState.players,rdGetTotals(),rdState.gameId,true); }
+// ── Account login/signup ─────────────────────────────────
+function showAcctError(msg) {
+  var el = document.getElementById('acctError');
+  el.textContent = msg; el.style.display = '';
+}
 
-const _origT51Save = t51Save;
-function t51Save() { _origT51Save(); if(_currentUser&&t51State.gameId) syncGameOnline('Turkish 51',t51State.players,t51GetTotals(),t51State.gameId,false); }
+function acctPickAvatar(name) {
+  var avs = ['😎','🎲','🃏','🏆','🎯','🦊','🐯','🦁','🐸','🦅','🌟','🔥','⚡','🎳','🎮'];
+  var h = 0;
+  for (var i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) & 0xffff;
+  return avs[h % avs.length];
+}
 
-const _origGinSave = ginSave;
-function ginSave() { _origGinSave(); if(_currentUser&&ginState.gameId) syncGameOnline('Gin Rummy',ginState.players,ginGetTotals(),ginState.gameId,true); }
-
-const _origOklaSave = oklaSave;
-function oklaSave() { _origOklaSave(); if(_currentUser&&oklaState.gameId) syncGameOnline('Oklahoma Gin',oklaState.players,oklaGetTotals(),oklaState.gameId,true); }
-
-// ── Account: Login / Create ──────────────────────────────
 async function acctLogin() {
-  const username = (document.getElementById('acctUsername')?.value || '').trim();
-  const pin = (document.getElementById('acctPin')?.value || '').trim();
-  const errEl = document.getElementById('acctError');
-  const btn = document.getElementById('acctLoginBtn');
+  var username = (document.getElementById('acctUsername').value || '').trim();
+  var pin = (document.getElementById('acctPin').value || '').trim();
+  var errEl = document.getElementById('acctError');
+  var btn = document.getElementById('acctLoginBtn');
 
   if (!username || username.length < 2) { showAcctError('Username must be at least 2 characters'); return; }
-  if (!/^\d{4}$/.test(pin)) { showAcctError('PIN must be exactly 4 digits'); return; }
+  if (!/^[0-9]{4}$/.test(pin)) { showAcctError('PIN must be exactly 4 digits'); return; }
 
   btn.textContent = 'Loading...'; btn.disabled = true;
   errEl.style.display = 'none';
 
   try {
-    const existing = await dbGetUser(username);
+    var existing = await dbGetUser(username);
     if (existing) {
       if (String(existing.pin) !== String(pin)) {
-        showAcctError('Incorrect PIN. Try again.'); btn.textContent='Sign In / Create Account'; btn.disabled=false; return;
+        showAcctError('Incorrect PIN. Try again.');
+        btn.textContent = 'Sign In / Create Account'; btn.disabled = false;
+        return;
       }
-      _currentUser = { ...existing };
+      _currentUser = JSON.parse(JSON.stringify(existing));
     } else {
-      _currentUser = { username, pin, joinedAt: new Date().toISOString(), friends: [], avatar: acctPickAvatar(username), photo: null };
+      _currentUser = { username: username, pin: pin, joinedAt: new Date().toISOString(), friends: [], avatar: acctPickAvatar(username), photo: null };
       await dbSetUser(_currentUser);
     }
     localStorage.setItem('skor_account', JSON.stringify(_currentUser));
     renderAccountMain();
     renderAllFriendChips();
+    updateHomeAccountBtn();
     updateOnlineStatusUI();
     showToast('Welcome, ' + _currentUser.username + '! ✔');
   } catch(e) {
-    // complete offline fallback
-    _currentUser = { username, pin, joinedAt: new Date().toISOString(), friends: [], avatar: acctPickAvatar(username), photo: null };
-    localStorage.setItem('skor_account', JSON.stringify(_currentUser));
+    console.warn('Login error:', e);
+    _currentUser = { username: username, pin: pin, joinedAt: new Date().toISOString(), friends: [], avatar: acctPickAvatar(username), photo: null };
+    try { localStorage.setItem('skor_account', JSON.stringify(_currentUser)); } catch(err) {}
+    try { localStorage.setItem('skor_user_' + username.toLowerCase(), JSON.stringify(_currentUser)); } catch(err) {}
     renderAccountMain();
     renderAllFriendChips();
-    showToast('Saved locally — will sync when online');
+    updateHomeAccountBtn();
+    showToast('Saved locally');
   } finally {
     btn.textContent = 'Sign In / Create Account'; btn.disabled = false;
   }
 }
 
-function showAcctError(msg) {
-  const el = document.getElementById('acctError');
-  el.textContent = msg; el.style.display = '';
-}
-
-function acctPickAvatar(name) {
-  const avs = ['😎','🎲','🃏','🏆','🎯','🦊','🐯','🦁','🐸','🦅','🌟','🔥','⚡','🎳','🎮'];
-  let h = 0; for (const c of name) h = (h * 31 + c.charCodeAt(0)) & 0xffff;
-  return avs[h % avs.length];
-}
-
 function acctSignOut() {
   if (!confirm('Sign out?')) return;
   _currentUser = null;
-  localStorage.removeItem('skor_account');
+  try { localStorage.removeItem('skor_account'); } catch(e) {}
   document.getElementById('acct-login-view').style.display = '';
   document.getElementById('acct-main-view').style.display = 'none';
   renderAllFriendChips();
   updateHomeAccountBtn();
-  showToast('Signed out');
-}
-
-function updateHomeAccountBtn() {
-  const btn = document.getElementById('homeAccountBtn');
-  if (btn) btn.textContent = _currentUser ? ('👤 ' + _currentUser.username) : '👤 Sign In';
-}
-
-async function trySyncUser() {
-  if (!_currentUser || !_db) return;
-  try { await dbSetUser(_currentUser); } catch(e) {}
-}
-
-function renderAccountMain() {
-  if (!_currentUser) return;
-  document.getElementById('acct-login-view').style.display = 'none';
-  document.getElementById('acct-main-view').style.display = '';
-  const photo = _currentUser.photo;
-  const av = document.getElementById('acctAvatar');
-  if (photo) { av.innerHTML = `<img src="${photo}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`; }
-  else { av.textContent = _currentUser.avatar || '😎'; }
-  document.getElementById('acctDisplayName').textContent = _currentUser.username;
-  const d = new Date(_currentUser.joinedAt);
-  document.getElementById('acctSince').textContent = 'Member since ' + d.toLocaleDateString('en-AU', {month:'long',year:'numeric'});
-  updateHomeAccountBtn();
   updateOnlineStatusUI();
-  renderFriendsList();
-  loadUserGames();
-}
-
-// ── Friends ───────────────────────────────────────────────
-async function acctAddFriend() {
-  if (!_currentUser) return;
-  const fn = (document.getElementById('addFriendInput')?.value || '').trim();
-  if (!fn) return;
-  if (fn.toLowerCase() === _currentUser.username.toLowerCase()) { showToast("That's you!"); return; }
-  if (_currentUser.friends.some(f => f.toLowerCase() === fn.toLowerCase())) { showToast('Already in your friends list'); return; }
-
-  // Check if they exist (online) or just add them (manual/offline player)
-  let exists = false;
-  try { const u = await dbGetUser(fn); exists = !!u; } catch(e) {}
-
-  _currentUser.friends.push(fn);
-  localStorage.setItem('skor_account', JSON.stringify(_currentUser));
-  try { await dbSetUser(_currentUser); } catch(e) {}
-  document.getElementById('addFriendInput').value = '';
-  renderFriendsList();
-  renderAllFriendChips();
-  showToast(exists ? 'Friend added! 🤝' : fn + ' added (no account found — added as contact)');
-}
-
-async function renderFriendsList() {
-  const el = document.getElementById('friendsList');
-  if (!_currentUser || !_currentUser.friends.length) {
-    el.innerHTML = '<div style="color:var(--text-light);font-size:13px;text-align:center;padding:10px 0;">No friends yet — add some!</div>';
-    return;
-  }
-  let html = '';
-  for (const fn of _currentUser.friends) {
-    let hasAccount = false;
-    try { const u = await dbGetUser(fn); hasAccount = !!u; } catch(e) {}
-    const nameStyle = hasAccount ? 'color:#007a99;font-weight:900;' : '';
-    const badge = hasAccount ? '<span style="background:rgba(0,229,255,0.15);color:#007a99;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:800;margin-left:4px;">Online</span>' : '<span style="background:#eee;color:#999;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:800;margin-left:4px;">Local</span>';
-    html += `<div class="friends-item">
-      <div class="friends-avatar">${acctPickAvatar(fn)}</div>
-      <div><div class="friends-name" style="${nameStyle}">${fn}${badge}</div></div>
-      <button class="btn btn-sm btn-grey" style="margin-left:auto;" onclick="acctRemoveFriend('${fn}')">Remove</button>
-    </div>`;
-  }
-  el.innerHTML = html;
-}
-
-function acctRemoveFriend(fn) {
-  if (!confirm('Remove ' + fn + ' from friends?')) return;
-  _currentUser.friends = _currentUser.friends.filter(f => f.toLowerCase() !== fn.toLowerCase());
-  localStorage.setItem('skor_account', JSON.stringify(_currentUser));
-  try { dbSetUser(_currentUser); } catch(e) {}
-  renderFriendsList();
-  renderAllFriendChips();
-  showToast('Removed ' + fn);
-}
-
-async function loadUserGames() {
-  const el = document.getElementById('onlineGamesList');
-  if (!_currentUser) return;
-  el.innerHTML = '<div style="color:var(--blue);font-size:12px;text-align:center;padding:8px;">Loading games...</div>';
-  try {
-    const games = await dbGetUserGames(_currentUser.username);
-    if (!games.length) { el.innerHTML = '<div style="color:var(--text-light);font-size:13px;text-align:center;padding:10px 0;">No games yet.</div>'; return; }
-    el.innerHTML = games.map(g => {
-      const sorted = g.players.map((p,i)=>({p,s:g.totals[i]})).sort((a,b)=>g.higherIsBetter?b.s-a.s:a.s-b.s);
-      const chips = sorted.map((item,ri)=>{
-        const isOnline = isPlayerOnline(item.p);
-        return `<span style="background:${ri===0?'rgba(255,213,79,0.2)':'var(--blue-pale)'};${isOnline?'color:#007a99;':'color:var(--blue);'}border-radius:20px;padding:2px 9px;font-size:11px;font-weight:800;display:inline-block;margin-right:4px;">${ri===0?'🏆 ':''}${item.p}: ${item.s}</span>`;
-      }).join('');
-      const d = new Date(g.updatedAt);
-      return `<div class="shared-game-card">
-        <div class="sgc-header"><span class="sgc-game">${g.gameLabel}</span><span class="sgc-date">${d.toLocaleDateString('en-AU',{day:'numeric',month:'short'})}</span></div>
-        <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;">${chips}</div>
-      </div>`;
-    }).join('');
-  } catch(e) { el.innerHTML = '<div style="color:var(--text-light);font-size:12px;text-align:center;padding:8px;">Could not load games.</div>'; }
-}
-
-// ── Friend chips on game setup screens ───────────────────
-function renderFriendChips(containerId, inputIds) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
-  if (!_currentUser || !_currentUser.friends.length) { el.innerHTML = ''; return; }
-  el.innerHTML = _currentUser.friends.map(fn => {
-    let isOnline = false;
-    // Quick check from local cache
-    const cached = localStorage.getItem('skor_user_' + fn.toLowerCase());
-    if (cached) isOnline = true;
-    return `<button class="friend-chip ${isOnline?'online-chip':''}" onclick="addFriendToInput('${fn}', ${JSON.stringify(inputIds)})">${isOnline?'🌐 ':'👤 '}${fn}</button>`;
-  }).join('');
-}
-
-function addFriendToInput(name, inputIds) {
-  // Find the first empty input and fill it
-  for (const id of inputIds) {
-    const el = document.getElementById(id);
-    if (el && !el.value.trim()) { el.value = name; el.style.color='#007a99'; el.style.fontWeight='900'; return; }
-  }
-  // All filled — fill the last one
-  const last = document.getElementById(inputIds[inputIds.length-1]);
-  if (last) { last.value = name; last.style.color='#007a99'; last.style.fontWeight='900'; }
-}
-
-function renderAllFriendChips() {
-  renderFriendChips('okeyFriendChips', ['okeyPname0','okeyPname1','okeyPname2','okeyPname3']);
-  renderFriendChips('rdFriendChips', ['rdPname0','rdPname1','rdPname2','rdPname3']);
-  renderFriendChips('t51FriendChips', ['t51Pname0','t51Pname1','t51Pname2','t51Pname3']);
-  renderFriendChips('ginFriendChips', ['ginP0','ginP1']);
-  renderFriendChips('oklaFriendChips', ['oklaP0','oklaP1']);
-}
-
-// ── Profile photo ─────────────────────────────────────────
-const AVATAR_EMOJIS = ['😎','🎲','🃏','🏆','🎯','🦊','🐯','🦁','🐸','🦅','🌟','🔥','⚡','🎳','🎮','🦄','🐼','🦸','🧑‍💻','🎸'];
-let _pendingPhoto = null;
-let _pendingEmoji = null;
-
-function acctOpenPhotoMenu() {
-  _pendingPhoto = null; _pendingEmoji = null;
-  const preview = document.getElementById('photoPreview');
-  const photo = _currentUser?.photo;
-  if (photo) { preview.innerHTML = `<img src="${photo}" style="width:80px;height:80px;object-fit:cover;border-radius:50%;">`; }
-  else { preview.textContent = _currentUser?.avatar || '😎'; preview.style.fontSize='38px'; }
-  // Render emoji grid
-  document.getElementById('emojiGrid').innerHTML = AVATAR_EMOJIS.map(e =>
-    `<button onclick="selectEmoji('${e}')" style="font-size:28px;padding:8px;border:2px solid transparent;border-radius:10px;background:var(--off-white);cursor:pointer;transition:all 0.15s;" id="eav_${e}">${e}</button>`
-  ).join('');
-  document.getElementById('photoPickerModal').classList.add('open');
-}
-
-function selectEmoji(e) {
-  _pendingEmoji = e; _pendingPhoto = null;
-  document.getElementById('photoPreview').textContent = e;
-  document.getElementById('photoPreview').style.fontSize = '38px';
-  document.querySelectorAll('[id^="eav_"]').forEach(b=>b.style.borderColor='transparent');
-  const b = document.getElementById('eav_'+e);
-  if(b) b.style.borderColor='var(--blue)';
-}
-
-function acctHandlePhotoUpload(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    _pendingPhoto = e.target.result;
-    _pendingEmoji = null;
-    const preview = document.getElementById('photoPreview');
-    preview.innerHTML = `<img src="${_pendingPhoto}" style="width:80px;height:80px;object-fit:cover;border-radius:50%;">`;
-    preview.style.fontSize = '';
-  };
-  reader.readAsDataURL(file);
-}
-
-async function acctSavePhoto() {
-  if (!_currentUser) return;
-  if (_pendingPhoto) { _currentUser.photo = _pendingPhoto; _currentUser.avatar = null; }
-  else if (_pendingEmoji) { _currentUser.avatar = _pendingEmoji; _currentUser.photo = null; }
-  else { closeModal('photoPickerModal'); return; }
-  localStorage.setItem('skor_account', JSON.stringify(_currentUser));
-  try { await dbSetUser(_currentUser); } catch(e) {}
-  closeModal('photoPickerModal');
-  renderAccountMain();
-  showToast('Profile photo updated ✔');
-}
-
-// ── PWA Install ───────────────────────────────────────────
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  _pwaInstallPrompt = e;
-  const banner = document.getElementById('pwaBanner');
-  if (banner) banner.classList.add('show');
-});
-
-async function pwaInstall() {
-  if (!_pwaInstallPrompt) return;
-  _pwaInstallPrompt.prompt();
-  const result = await _pwaInstallPrompt.userChoice;
-  if (result.outcome === 'accepted') {
-    const banner = document.getElementById('pwaBanner');
-    if (banner) banner.classList.remove('show');
-    showToast('Skor Tracker installed! 🎉');
-  }
-  _pwaInstallPrompt = null;
+  showToast('Signed out');
 }
 
 function openAccountScreen() {
@@ -2847,65 +2684,292 @@ function openAccountScreen() {
   showScreen('account');
 }
 
-// ── App init ──────────────────────────────────────────────
-async function loadAppSettings() {
-  // Load saved account
-  try {
-    const saved = localStorage.getItem('skor_account');
-    if (saved) { _currentUser = JSON.parse(saved); }
-  } catch(e) {}
+function renderAccountMain() {
+  if (!_currentUser) return;
+  document.getElementById('acct-login-view').style.display = 'none';
+  document.getElementById('acct-main-view').style.display = '';
+  var av = document.getElementById('acctAvatar');
+  if (_currentUser.photo) {
+    av.innerHTML = '<img src="' + _currentUser.photo + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';
+  } else {
+    av.textContent = _currentUser.avatar || '😎';
+  }
+  document.getElementById('acctDisplayName').textContent = _currentUser.username;
+  var d = new Date(_currentUser.joinedAt);
+  document.getElementById('acctSince').textContent = 'Member since ' + d.toLocaleDateString('en-AU', {month:'long', year:'numeric'});
   updateOnlineStatusUI();
-  updateHomeAccountBtn();
-  if (_currentUser) renderAllFriendChips();
-  // Try to init Firebase in background
-  await initFirebase();
-  if (_currentUser && _isNetworkOnline) trySyncUser();
+  renderFriendsList();
+  loadUserGames();
 }
 
-// ════════════════════════════════════════════════════════
-// LIVE STANDINGS
+// ── Friends ──────────────────────────────────────────────
+async function acctAddFriend() {
+  if (!_currentUser) return;
+  var fn = (document.getElementById('addFriendInput').value || '').trim();
+  if (!fn) return;
+  if (fn.toLowerCase() === _currentUser.username.toLowerCase()) { showToast("That's you!"); return; }
+  var friends = _currentUser.friends || [];
+  for (var i = 0; i < friends.length; i++) {
+    if (friends[i].toLowerCase() === fn.toLowerCase()) { showToast('Already in your list'); return; }
+  }
 
-// ════════════════════════════════════════════════════════
+  var exists = false;
+  try { var u = await dbGetUser(fn); exists = !!u; } catch(e) {}
+
+  _currentUser.friends.push(fn);
+  try { localStorage.setItem('skor_account', JSON.stringify(_currentUser)); } catch(e) {}
+  try { await dbSetUser(_currentUser); } catch(e) {}
+  document.getElementById('addFriendInput').value = '';
+  renderFriendsList();
+  renderAllFriendChips();
+  showToast(exists ? 'Friend added! 🤝' : fn + ' added as contact');
+}
+
+function acctRemoveFriend(fn) {
+  if (!confirm('Remove ' + fn + '?')) return;
+  _currentUser.friends = (_currentUser.friends || []).filter(function(f){ return f.toLowerCase() !== fn.toLowerCase(); });
+  try { localStorage.setItem('skor_account', JSON.stringify(_currentUser)); } catch(e) {}
+  try { dbSetUser(_currentUser); } catch(e) {}
+  renderFriendsList();
+  renderAllFriendChips();
+  showToast('Removed ' + fn);
+}
+
+async function renderFriendsList() {
+  var el = document.getElementById('friendsList');
+  var friends = _currentUser ? (_currentUser.friends || []) : [];
+  if (!friends.length) {
+    el.innerHTML = '<div style="color:var(--text-light);font-size:13px;text-align:center;padding:10px 0;">No friends yet — add some!</div>';
+    return;
+  }
+  var html = '';
+  for (var i = 0; i < friends.length; i++) {
+    var fn = friends[i];
+    var hasAccount = !!localStorage.getItem('skor_user_' + fn.toLowerCase());
+    if (!hasAccount && _db && _isNetworkOnline) {
+      try { var u = await dbGetUser(fn); hasAccount = !!u; } catch(e) {}
+    }
+    var nameClass = hasAccount ? 'online-player-name' : '';
+    var badge = hasAccount
+      ? '<span style="background:rgba(0,188,212,0.15);color:#00838F;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:800;margin-left:6px;">Online</span>'
+      : '<span style="background:#eee;color:#999;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:800;margin-left:6px;">Contact</span>';
+    html += '<div class="friends-item">' +
+      '<div class="friends-avatar">' + acctPickAvatar(fn) + '</div>' +
+      '<div><div class="friends-name ' + nameClass + '">' + fn + badge + '</div></div>' +
+      '<button class="btn btn-sm btn-grey" style="margin-left:auto;" onclick="acctRemoveFriend(\'' + fn.replace(/'/g, "\\'") + '\')">Remove</button>' +
+      '</div>';
+  }
+  el.innerHTML = html;
+}
+
+async function loadUserGames() {
+  var el = document.getElementById('onlineGamesList');
+  if (!_currentUser) return;
+  el.innerHTML = '<div style="color:var(--blue);font-size:12px;text-align:center;padding:8px;">Loading...</div>';
+  try {
+    var games = await dbGetUserGames(_currentUser.username);
+    if (!games.length) {
+      el.innerHTML = '<div style="color:var(--text-light);font-size:13px;text-align:center;padding:10px 0;">No games yet.</div>';
+      return;
+    }
+    var html = '';
+    for (var i = 0; i < games.length; i++) {
+      var g = games[i];
+      var sorted = g.players.map(function(p, idx){ return {p: p, s: g.totals[idx]}; })
+        .sort(function(a,b){ return g.higherIsBetter ? b.s - a.s : a.s - b.s; });
+      var chips = sorted.map(function(item, ri){
+        var isOnline = isPlayerOnline(item.p);
+        var bg = ri === 0 ? 'rgba(255,213,79,0.2)' : (isOnline ? 'rgba(0,188,212,0.1)' : 'var(--blue-pale)');
+        var col = isOnline ? '#00838F' : 'var(--blue)';
+        return '<span style="background:' + bg + ';color:' + col + ';border-radius:20px;padding:2px 9px;font-size:11px;font-weight:800;display:inline-block;margin-right:4px;margin-bottom:4px;">' +
+          (ri === 0 ? '🏆 ' : '') + item.p + ': ' + item.s + '</span>';
+      }).join('');
+      var d = new Date(g.updatedAt);
+      html += '<div class="shared-game-card">' +
+        '<div class="sgc-header"><span class="sgc-game">' + g.gameLabel + '</span><span class="sgc-date">' + d.toLocaleDateString('en-AU',{day:'numeric',month:'short'}) + '</span></div>' +
+        '<div>' + chips + '</div></div>';
+    }
+    el.innerHTML = html;
+  } catch(e) {
+    el.innerHTML = '<div style="color:var(--text-light);font-size:12px;text-align:center;padding:8px;">Could not load games.</div>';
+  }
+}
+
+// ── Friend chips on game setup ───────────────────────────
+function renderFriendChips(containerId, inputIds) {
+  var el = document.getElementById(containerId);
+  if (!el) return;
+  if (!_currentUser || !(_currentUser.friends || []).length) { el.innerHTML = ''; return; }
+  var html = '';
+  for (var i = 0; i < _currentUser.friends.length; i++) {
+    var fn = _currentUser.friends[i];
+    var isOnline = !!localStorage.getItem('skor_user_' + fn.toLowerCase());
+    var safe = fn.replace(/'/g, "\\'");
+    html += '<button class="friend-chip ' + (isOnline ? 'online-chip' : '') + '" onclick="addFriendToInput(\'' + safe + '\', ' + JSON.stringify(inputIds) + ')">' +
+      (isOnline ? '🌐 ' : '👤 ') + fn + '</button>';
+  }
+  el.innerHTML = html;
+}
+
+function addFriendToInput(name, inputIds) {
+  for (var i = 0; i < inputIds.length; i++) {
+    var el = document.getElementById(inputIds[i]);
+    if (el && !el.value.trim()) { el.value = name; styleInputIfOnline(el, name); return; }
+  }
+  // All filled — overwrite the last one
+  var last = document.getElementById(inputIds[inputIds.length - 1]);
+  if (last) { last.value = name; styleInputIfOnline(last, name); }
+}
+
+function styleInputIfOnline(el, name) {
+  if (isPlayerOnline(name)) { el.style.color = '#00838F'; el.style.fontWeight = '900'; }
+  else { el.style.color = ''; el.style.fontWeight = ''; }
+}
+
+function renderAllFriendChips() {
+  var okeyCount = (typeof okeyPlayerCount !== 'undefined') ? okeyPlayerCount : 3;
+  var rdCount = (typeof rdPlayerCount !== 'undefined') ? rdPlayerCount : 4;
+  var t51C = (typeof t51Count !== 'undefined') ? t51Count : 3;
+  var okeyIds = []; for (var i = 0; i < okeyCount; i++) okeyIds.push('okeyPname' + i);
+  var rdIds = []; for (var j = 0; j < rdCount; j++) rdIds.push('rdPname' + j);
+  var t51Ids = []; for (var k = 0; k < t51C; k++) t51Ids.push('t51Pname' + k);
+  renderFriendChips('okeyFriendChips', okeyIds);
+  renderFriendChips('rdFriendChips', rdIds);
+  renderFriendChips('t51FriendChips', t51Ids);
+  renderFriendChips('ginFriendChips', ['ginP0','ginP1']);
+  renderFriendChips('oklaFriendChips', ['oklaP0','oklaP1']);
+}
+
+// Re-render chips whenever player count changes (patch the count functions)
+if (typeof okeySetPlayerCount === 'function') {
+  var _origOkeySetPC = okeySetPlayerCount;
+  okeySetPlayerCount = function(n) {
+    _origOkeySetPC(n);
+    var ids = []; for (var i = 0; i < n; i++) ids.push('okeyPname' + i);
+    renderFriendChips('okeyFriendChips', ids);
+  };
+}
+if (typeof rdRenderRDInputs === 'function') {
+  var _origRdRender = rdRenderRDInputs;
+  rdRenderRDInputs = function() {
+    _origRdRender();
+    var n = (typeof rdPlayerCount !== 'undefined') ? rdPlayerCount : 4;
+    var ids = []; for (var i = 0; i < n; i++) ids.push('rdPname' + i);
+    renderFriendChips('rdFriendChips', ids);
+  };
+}
+if (typeof t51SetCount === 'function') {
+  var _origT51SC = t51SetCount;
+  t51SetCount = function(n) {
+    _origT51SC(n);
+    var ids = []; for (var i = 0; i < n; i++) ids.push('t51Pname' + i);
+    renderFriendChips('t51FriendChips', ids);
+  };
+}
+
+// ── Profile photo ────────────────────────────────────────
+var AVATAR_EMOJIS = ['😎','🎲','🃏','🏆','🎯','🦊','🐯','🦁','🐸','🦅','🌟','🔥','⚡','🎳','🎮','🦄','🐼','🦸','🧑‍💻','🎸','🤖','👑','💎','🌈'];
+var _pendingPhoto = null;
+var _pendingEmoji = null;
+
+function acctOpenPhotoMenu() {
+  _pendingPhoto = null; _pendingEmoji = null;
+  var preview = document.getElementById('photoPreview');
+  if (_currentUser && _currentUser.photo) {
+    preview.innerHTML = '<img src="' + _currentUser.photo + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';
+  } else {
+    preview.textContent = (_currentUser && _currentUser.avatar) || '😎';
+    preview.style.fontSize = '38px';
+  }
+  var grid = document.getElementById('emojiGrid');
+  grid.innerHTML = AVATAR_EMOJIS.map(function(e){
+    return '<button onclick="selectEmoji(\'' + e + '\')" style="font-size:28px;padding:8px;border:2px solid transparent;border-radius:10px;background:var(--off-white);cursor:pointer;" id="eav_' + e + '">' + e + '</button>';
+  }).join('');
+  document.getElementById('photoFileInput').value = '';
+  document.getElementById('photoPickerModal').classList.add('open');
+}
+
+function selectEmoji(e) {
+  _pendingEmoji = e; _pendingPhoto = null;
+  var preview = document.getElementById('photoPreview');
+  preview.innerHTML = ''; preview.textContent = e; preview.style.fontSize = '38px';
+  document.querySelectorAll('[id^="eav_"]').forEach(function(b){ b.style.borderColor = 'transparent'; });
+  var b = document.getElementById('eav_' + e);
+  if (b) b.style.borderColor = 'var(--blue)';
+}
+
+function acctHandlePhotoUpload(event) {
+  var file = event.target.files[0];
+  if (!file) return;
+  if (file.size > 500000) {
+    showToast('Photo too large (max 500KB)');
+    return;
+  }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    _pendingPhoto = e.target.result;
+    _pendingEmoji = null;
+    var preview = document.getElementById('photoPreview');
+    preview.innerHTML = '<img src="' + _pendingPhoto + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';
+  };
+  reader.readAsDataURL(file);
+}
+
+async function acctSavePhoto() {
+  if (!_currentUser) return;
+  if (_pendingPhoto) { _currentUser.photo = _pendingPhoto; }
+  else if (_pendingEmoji) { _currentUser.avatar = _pendingEmoji; _currentUser.photo = null; }
+  else { closeModal('photoPickerModal'); return; }
+  try { localStorage.setItem('skor_account', JSON.stringify(_currentUser)); } catch(e) {}
+  try { await dbSetUser(_currentUser); } catch(e) {}
+  closeModal('photoPickerModal');
+  renderAccountMain();
+  showToast('Photo updated ✔');
+}
+
+// ── Live Standings ───────────────────────────────────────
 function showLiveStandings(gameKey) {
-  let players=[], totals=[], higherIsBetter=true, gameName='', roundCount=0;
-  if (gameKey==='okey') { players=okeyState.players; totals=okeyGetTotals(); higherIsBetter=false; gameName='Okey 101'; roundCount=okeyState.rounds.length; }
-  else if (gameKey==='rd') { players=rdState.players; totals=rdGetTotals(); higherIsBetter=true; gameName='Racing Demons'; roundCount=rdState.rounds.length; }
-  else if (gameKey==='t51') { players=t51State.players; totals=t51GetTotals(); higherIsBetter=false; gameName='Turkish 51'; roundCount=t51State.rounds.length; }
-  else if (gameKey==='gin') { players=ginState.players; totals=ginGetTotals(); higherIsBetter=true; gameName='Gin Rummy'; roundCount=ginState.rounds.length; }
-  else if (gameKey==='okla') { players=oklaState.players; totals=oklaGetTotals(); higherIsBetter=true; gameName='Oklahoma Gin'; roundCount=oklaState.rounds.length; }
+  var players = [], totals = [], higherIsBetter = true, gameName = '', roundCount = 0;
+  if (gameKey === 'okey' && typeof okeyState !== 'undefined') {
+    players = okeyState.players; totals = okeyGetTotals(); higherIsBetter = false; gameName = 'Okey 101'; roundCount = okeyState.rounds.length;
+  } else if (gameKey === 'rd' && typeof rdState !== 'undefined') {
+    players = rdState.players; totals = rdGetTotals(); higherIsBetter = true; gameName = 'Racing Demons'; roundCount = rdState.rounds.length;
+  } else if (gameKey === 't51' && typeof t51State !== 'undefined') {
+    players = t51State.players; totals = t51GetTotals(); higherIsBetter = false; gameName = 'Turkish 51'; roundCount = t51State.rounds.length;
+  } else if (gameKey === 'gin' && typeof ginState !== 'undefined') {
+    players = ginState.players; totals = ginGetTotals(); higherIsBetter = true; gameName = 'Gin Rummy'; roundCount = ginState.rounds.length;
+  } else if (gameKey === 'okla' && typeof oklaState !== 'undefined') {
+    players = oklaState.players; totals = oklaGetTotals(); higherIsBetter = true; gameName = 'Oklahoma Gin'; roundCount = oklaState.rounds.length;
+  }
   if (!players.length) return;
 
   document.getElementById('standingsModalSub').textContent = gameName + ' · Round ' + roundCount;
 
-  const indexed = players.map((p,i)=>({name:p,score:totals[i]}));
-  indexed.sort((a,b)=>higherIsBetter?b.score-a.score:a.score-b.score);
-  const emojis=['🏆','🥈','🥉'];
-  const html = indexed.map((p,rank)=>{
-    const isFirst=rank===0, isLast=rank===indexed.length-1&&indexed.length>1;
-    const emoji = isFirst?'🏆':isLast?'💩':(emojis[rank]||'');
-    return `<div class="standings-modal-row ${isFirst?'s-rank-1':isLast?'s-rank-last':''}">
-      <div class="s-rank-num ${isFirst?'gold':''}">${rank+1}</div>
-      <div class="s-emoji">${emoji}</div>
-      <div>
-        <div class="s-name ${isFirst?'gold':''}">${p.name}</div>
-        <div style="font-size:11px;color:var(--text-light);font-weight:600;">${higherIsBetter?'points':'points (lower=better)'}</div>
-      </div>
-      <div class="s-score ${isFirst?'gold':''}">${p.score}</div>
-    </div>`;
+  var indexed = players.map(function(p,i){ return {name: p, score: totals[i]}; });
+  indexed.sort(function(a,b){ return higherIsBetter ? b.score - a.score : a.score - b.score; });
+  var emojis = ['🏆','🥈','🥉'];
+  var html = indexed.map(function(p, rank){
+    var isFirst = rank === 0;
+    var isLast = rank === indexed.length - 1 && indexed.length > 1;
+    var emoji = isFirst ? '🏆' : isLast ? '💩' : (emojis[rank] || '');
+    var nameClass = (isFirst ? 'gold ' : '') + (isPlayerOnline(p.name) ? 'online-player-name' : '');
+    return '<div class="standings-modal-row ' + (isFirst ? 's-rank-1' : (isLast ? 's-rank-last' : '')) + '">' +
+      '<div class="s-rank-num ' + (isFirst ? 'gold' : '') + '">' + (rank+1) + '</div>' +
+      '<div class="s-emoji">' + emoji + '</div>' +
+      '<div style="flex:1;"><div class="s-name ' + nameClass + '">' + p.name + '</div>' +
+      '<div style="font-size:11px;color:var(--text-light);font-weight:600;">' + (higherIsBetter ? 'points' : 'points (lower=better)') + '</div></div>' +
+      '<div class="s-score ' + (isFirst ? 'gold' : '') + '">' + p.score + '</div></div>';
   }).join('');
   document.getElementById('standingsModalBody').innerHTML = html;
   document.getElementById('standingsModal').classList.add('open');
 }
 
-
-// ════════════════════════════════════════════════════════
-// ADMIN PANEL (Creator Only)
-// ════════════════════════════════════════════════════════
-const ADMIN_PASSWORD = 'SkorAdmin2025!'; // Change this to your own password
-let _adminTapCount = 0;
-let _adminTapTimer = null;
-let _adminAuthenticated = false;
-let _adminDeleteTarget = null; // username to delete
+// ── ADMIN PANEL ──────────────────────────────────────────
+var ADMIN_PASSWORD = 'SkorAdmin1967!';
+var _adminTapCount = 0;
+var _adminTapTimer = null;
+var _adminAuthenticated = false;
+var _adminDeleteTarget = null;
 
 function adminTap() {
   _adminTapCount++;
@@ -2915,7 +2979,7 @@ function adminTap() {
     openAdminPanel();
     return;
   }
-  _adminTapTimer = setTimeout(() => { _adminTapCount = 0; }, 1800);
+  _adminTapTimer = setTimeout(function(){ _adminTapCount = 0; }, 1800);
   if (_adminTapCount >= 4) showToast('🔐 ' + (7 - _adminTapCount) + ' more...');
 }
 
@@ -2935,8 +2999,8 @@ function openAdminPanel() {
 }
 
 function adminLogin() {
-  const pw = document.getElementById('adminPwInput')?.value || '';
-  const errEl = document.getElementById('adminPwError');
+  var pw = document.getElementById('adminPwInput').value || '';
+  var errEl = document.getElementById('adminPwError');
   if (pw !== ADMIN_PASSWORD) {
     errEl.textContent = 'Incorrect password.';
     errEl.style.display = '';
@@ -2949,134 +3013,130 @@ function adminLogin() {
   document.getElementById('admin-main-view').style.display = '';
   adminLoadAllUsers();
   adminLoadStorage();
-  showToast('Admin panel unlocked 🔓');
+  showToast('Admin unlocked 🔓');
 }
 
 function adminLogout() {
   _adminAuthenticated = false;
   goHome();
-  showToast('Admin panel locked 🔐');
+  showToast('Admin locked 🔐');
+}
+
+async function adminCountGames(username) {
+  if (_db && _isNetworkOnline) {
+    try { var s = await _db.collection('users').doc(username).collection('games').get(); return s.size; } catch(e) {}
+  }
+  var n = 0;
+  Object.keys(localStorage).filter(function(k){ return k.indexOf('skor_game_') === 0; }).forEach(function(k){
+    try { var g = JSON.parse(localStorage.getItem(k)); if ((g.onlinePlayers || []).indexOf(username) !== -1) n++; } catch(e) {}
+  });
+  return n;
 }
 
 async function adminSearch() {
   if (!_adminAuthenticated) return;
-  const q = (document.getElementById('adminSearchInput')?.value || '').trim().toLowerCase();
-  const el = document.getElementById('adminSearchResults');
+  var q = (document.getElementById('adminSearchInput').value || '').trim().toLowerCase();
+  var el = document.getElementById('adminSearchResults');
   if (!q) { el.innerHTML = ''; return; }
   el.innerHTML = '<div style="color:var(--blue);font-size:12px;padding:6px 0;">Searching...</div>';
   try {
-    const userData = await dbGetUser(q);
+    var userData = await dbGetUser(q);
     if (!userData) {
-      el.innerHTML = `<div style="color:var(--text-light);font-size:13px;padding:6px 0;">No account found for "<strong>${q}</strong>"</div>`;
+      el.innerHTML = '<div style="color:var(--text-light);font-size:13px;padding:6px 0;">No account found for "<strong>' + q + '</strong>"</div>';
       return;
     }
-    const gameCount = await adminCountGames(q);
-    el.innerHTML = adminUserCard(userData, gameCount, true);
+    var gameCount = await adminCountGames(q);
+    el.innerHTML = adminUserCard(userData, gameCount);
   } catch(e) {
     el.innerHTML = '<div style="color:var(--red);font-size:12px;padding:6px 0;">Error: ' + e.message + '</div>';
   }
 }
 
-async function adminCountGames(username) {
-  if (_db) {
-    try {
-      const snap = await _db.collection('users').doc(username).collection('games').get();
-      return snap.size;
-    } catch(e) {}
-  }
-  return Object.keys(localStorage).filter(k=>k.startsWith('skor_game_')).reduce((n,k)=>{
-    try { const g=JSON.parse(localStorage.getItem(k)); return n+((g.onlinePlayers||[]).includes(username)?1:0); } catch{return n;}
-  },0);
-}
-
 async function adminLoadAllUsers() {
   if (!_adminAuthenticated) return;
-  const el = document.getElementById('adminAllUsers');
-  el.innerHTML = '<div style="color:var(--blue);font-size:12px;padding:6px 0;">Loading users...</div>';
+  var el = document.getElementById('adminAllUsers');
+  el.innerHTML = '<div style="color:var(--blue);font-size:12px;padding:6px 0;">Loading...</div>';
   try {
-    let users = [];
+    var users = [];
+    var seen = {};
     if (_db && _isNetworkOnline) {
       try {
-        const snap = await _db.collection('users').get();
-        for (const doc of snap.docs) {
-          const u = doc.data();
-          const gameCount = await adminCountGames(doc.id);
-          users.push({...u, gameCount});
+        var snap = await _db.collection('users').get();
+        for (var i = 0; i < snap.docs.length; i++) {
+          var u = snap.docs[i].data();
+          if (!u.username) continue;
+          var gc = await adminCountGames(snap.docs[i].id);
+          u.gameCount = gc;
+          users.push(u);
+          seen[u.username.toLowerCase()] = true;
         }
       } catch(e) {}
     }
-    // Also check localStorage for any local-only accounts
-    const localKeys = Object.keys(localStorage).filter(k=>k.startsWith('skor_user_'));
-    for (const k of localKeys) {
+    var localKeys = Object.keys(localStorage).filter(function(k){ return k.indexOf('skor_user_') === 0; });
+    for (var j = 0; j < localKeys.length; j++) {
       try {
-        const u = JSON.parse(localStorage.getItem(k));
-        if (u && !users.find(x=>x.username&&x.username.toLowerCase()===u.username.toLowerCase())) {
-          const gameCount = await adminCountGames(u.username.toLowerCase());
-          users.push({...u, gameCount, localOnly:true});
+        var lu = JSON.parse(localStorage.getItem(localKeys[j]));
+        if (lu && lu.username && !seen[lu.username.toLowerCase()]) {
+          var gc2 = await adminCountGames(lu.username.toLowerCase());
+          lu.gameCount = gc2; lu.localOnly = true;
+          users.push(lu);
         }
       } catch(e) {}
     }
-    if (!users.length) { el.innerHTML = '<div style="color:var(--text-light);font-size:13px;text-align:center;padding:8px;">No registered users yet.</div>'; return; }
-    users.sort((a, b) => new Date(b.joinedAt||0) - new Date(a.joinedAt||0));
-    el.innerHTML = '<div style="font-size:11px;color:var(--text-light);font-weight:700;margin-bottom:10px;">' + users.length + ' account' + (users.length!==1?'s':'') + (FIREBASE_ENABLED?'':' (local only — Firebase not configured)') + '</div>' +
-      users.map(u => adminUserCard(u, u.gameCount||0, false)).join('');
+    if (!users.length) {
+      el.innerHTML = '<div style="color:var(--text-light);font-size:13px;text-align:center;padding:8px;">No registered users yet.</div>';
+      return;
+    }
+    users.sort(function(a,b){ return new Date(b.joinedAt || 0) - new Date(a.joinedAt || 0); });
+    var summary = users.length + ' account' + (users.length !== 1 ? 's' : '');
+    if (!FIREBASE_ENABLED) summary += ' (local only — Firebase not configured)';
+    el.innerHTML = '<div style="font-size:11px;color:var(--text-light);font-weight:700;margin-bottom:10px;">' + summary + '</div>' +
+      users.map(function(u){ return adminUserCard(u, u.gameCount || 0); }).join('');
   } catch(e) {
     el.innerHTML = '<div style="color:var(--red);font-size:12px;padding:6px 0;">Error loading users.</div>';
   }
 }
 
-function adminUserCard(u, gameCount, isSearch) {
-  const joined = u.joinedAt ? new Date(u.joinedAt).toLocaleDateString('en-AU', {day:'numeric',month:'short',year:'numeric'}) : 'Unknown';
-  const friendCount = (u.friends||[]).length;
-  return `<div style="border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px;background:white;">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-      <div style="width:38px;height:38px;background:var(--blue-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">${u.avatar||'😎'}</div>
-      <div style="flex:1;">
-        <div style="font-weight:800;font-size:15px;">${u.username}</div>
-        <div style="font-size:11px;color:var(--text-light);font-weight:600;">Joined ${joined}</div>
-      </div>
-      <button class="btn btn-sm btn-danger" onclick="adminPromptDelete('${u.username}')">🗑 Delete</button>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;">
-      <span style="background:var(--blue-pale);color:var(--blue);border-radius:20px;padding:2px 9px;font-size:11px;font-weight:700;">🎮 ${gameCount} game${gameCount!==1?'s':''}</span>
-      <span style="background:var(--green-light);color:var(--green);border-radius:20px;padding:2px 9px;font-size:11px;font-weight:700;">👥 ${friendCount} friend${friendCount!==1?'s':''}</span>
-    </div>
-  </div>`;
+function adminUserCard(u, gameCount) {
+  var joined = u.joinedAt ? new Date(u.joinedAt).toLocaleDateString('en-AU', {day:'numeric',month:'short',year:'numeric'}) : 'Unknown';
+  var friendCount = (u.friends || []).length;
+  var avatar = u.photo ? '<img src="' + u.photo + '" style="width:38px;height:38px;border-radius:50%;object-fit:cover;">' : (u.avatar || '😎');
+  var locTag = u.localOnly ? '<span style="background:#fff3e0;color:#e65100;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:800;margin-left:4px;">Local</span>' : '';
+  var safeName = u.username.replace(/'/g, "\\'");
+  return '<div style="border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px;background:white;">' +
+    '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">' +
+    '<div style="width:38px;height:38px;background:var(--blue-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;overflow:hidden;">' + avatar + '</div>' +
+    '<div style="flex:1;"><div style="font-weight:800;font-size:15px;">' + u.username + locTag + '</div>' +
+    '<div style="font-size:11px;color:var(--text-light);font-weight:600;">Joined ' + joined + '</div></div>' +
+    '<button class="btn btn-sm btn-danger" onclick="adminPromptDelete(\'' + safeName + '\')">🗑</button></div>' +
+    '<div style="display:flex;gap:8px;flex-wrap:wrap;">' +
+    '<span style="background:var(--blue-pale);color:var(--blue);border-radius:20px;padding:2px 9px;font-size:11px;font-weight:700;">🎮 ' + gameCount + ' game' + (gameCount !== 1 ? 's' : '') + '</span>' +
+    '<span style="background:var(--green-light);color:var(--green);border-radius:20px;padding:2px 9px;font-size:11px;font-weight:700;">👥 ' + friendCount + ' friend' + (friendCount !== 1 ? 's' : '') + '</span>' +
+    '</div></div>';
 }
 
 async function adminLoadStorage() {
   if (!_adminAuthenticated) return;
-  const el = document.getElementById('adminStorageInfo');
+  var el = document.getElementById('adminStorageInfo');
   el.innerHTML = '<div style="color:var(--blue);font-size:12px;padding:6px 0;">Scanning...</div>';
   try {
-    let userCount = 0, gameCount = 0;
-    const localUsers = Object.keys(localStorage).filter(k=>k.startsWith('skor_user_')).length;
-    const localGames = Object.keys(localStorage).filter(k=>k.startsWith('skor_game_')).length;
-    let cloudUsers = 0, cloudGames = 0;
+    var localUsers = Object.keys(localStorage).filter(function(k){ return k.indexOf('skor_user_') === 0; }).length;
+    var localGames = Object.keys(localStorage).filter(function(k){ return k.indexOf('skor_game_') === 0; }).length;
+    var cloudUsers = 0, cloudGames = 0;
     if (_db && _isNetworkOnline) {
-      try { const s=await _db.collection('users').get(); cloudUsers=s.size; } catch(e) {}
-      try { const s=await _db.collection('games').get(); cloudGames=s.size; } catch(e) {}
+      try { var us = await _db.collection('users').get(); cloudUsers = us.size; } catch(e) {}
+      try { var gs = await _db.collection('games').get(); cloudGames = gs.size; } catch(e) {}
     }
-    const fbStatus = FIREBASE_ENABLED ? (_isNetworkOnline ? '✅ Connected' : '⚠️ Offline') : '❌ Not configured';
-    el.innerHTML = `<div style="display:flex;flex-direction:column;gap:8px;">
-      <div style="padding:8px;background:${FIREBASE_ENABLED?'var(--green-light)':'var(--accent-light)'};border-radius:6px;font-size:12px;font-weight:700;color:${FIREBASE_ENABLED?'var(--green)':'var(--accent)'};">Firebase: ${fbStatus}</div>
-      <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);">
-        <span style="font-weight:700;font-size:13px;">👤 Local users</span>
-        <span style="font-weight:900;font-size:15px;color:var(--blue);">${localUsers}</span>
-      </div>
-      <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);">
-        <span style="font-weight:700;font-size:13px;">☁ Cloud users</span>
-        <span style="font-weight:900;font-size:15px;color:var(--blue);">${cloudUsers}</span>
-      </div>
-      <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);">
-        <span style="font-weight:700;font-size:13px;">🎮 Local games</span>
-        <span style="font-weight:900;font-size:15px;color:var(--blue);">${localGames}</span>
-      </div>
-      <div style="display:flex;justify-content:space-between;padding:8px 0;">
-        <span style="font-weight:700;font-size:13px;">☁ Cloud games</span>
-        <span style="font-weight:900;font-size:15px;color:var(--blue);">${cloudGames}</span>
-      </div>
-    </div>`;
+    var fbStatus = FIREBASE_ENABLED ? (_isNetworkOnline ? '✅ Connected' : '⚠️ Offline') : '❌ Not configured';
+    var fbBg = FIREBASE_ENABLED ? 'var(--green-light)' : 'var(--accent-light)';
+    var fbCol = FIREBASE_ENABLED ? 'var(--green)' : 'var(--accent)';
+    el.innerHTML = '<div style="display:flex;flex-direction:column;gap:8px;">' +
+      '<div style="padding:8px;background:' + fbBg + ';border-radius:6px;font-size:12px;font-weight:700;color:' + fbCol + ';">Firebase: ' + fbStatus + '</div>' +
+      '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-weight:700;font-size:13px;">👤 Local users</span><span style="font-weight:900;font-size:15px;color:var(--blue);">' + localUsers + '</span></div>' +
+      '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-weight:700;font-size:13px;">☁ Cloud users</span><span style="font-weight:900;font-size:15px;color:var(--blue);">' + cloudUsers + '</span></div>' +
+      '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-weight:700;font-size:13px;">🎮 Local games</span><span style="font-weight:900;font-size:15px;color:var(--blue);">' + localGames + '</span></div>' +
+      '<div style="display:flex;justify-content:space-between;padding:8px 0;"><span style="font-weight:700;font-size:13px;">☁ Cloud games</span><span style="font-weight:900;font-size:15px;color:var(--blue);">' + cloudGames + '</span></div>' +
+      '</div>';
   } catch(e) {
     el.innerHTML = '<div style="color:var(--red);font-size:12px;padding:6px 0;">Error.</div>';
   }
@@ -3085,65 +3145,93 @@ async function adminLoadStorage() {
 function adminPromptDelete(username) {
   if (!_adminAuthenticated) return;
   _adminDeleteTarget = username;
-  document.getElementById('adminDeleteSub').textContent =
-    'You are about to permanently delete the account and all game data for:';
-  document.getElementById('adminDeleteDetails').innerHTML =
-    `<strong style="font-size:16px;">${acctPickAvatar(username)} ${username}</strong><br>
-    <span style="font-size:12px;color:var(--text-light);">This action cannot be undone.</span>`;
+  document.getElementById('adminDeleteSub').textContent = 'Permanently delete this account and all its game data?';
+  document.getElementById('adminDeleteDetails').innerHTML = '<strong style="font-size:16px;">' + acctPickAvatar(username) + ' ' + username + '</strong><br><span style="font-size:12px;color:var(--text-light);">This cannot be undone.</span>';
   document.getElementById('adminDeleteModal').classList.add('open');
 }
 
 async function adminConfirmDelete() {
   if (!_adminAuthenticated || !_adminDeleteTarget) return;
-  const username = _adminDeleteTarget;
-  const btn = document.getElementById('adminDeleteConfirmBtn');
-  btn.textContent = 'Deleting...';
-  btn.disabled = true;
-
+  var username = _adminDeleteTarget;
+  var btn = document.getElementById('adminDeleteConfirmBtn');
+  btn.textContent = 'Deleting...'; btn.disabled = true;
   try {
-    let deleted = 0;
-    // Delete from localStorage
-    localStorage.removeItem('skor_user_' + username.toLowerCase()); deleted++;
-    Object.keys(localStorage).filter(k=>k.startsWith('skor_game_')).forEach(k=>{
-      try { const g=JSON.parse(localStorage.getItem(k)); if((g.onlinePlayers||[]).includes(username.toLowerCase())){localStorage.removeItem(k);deleted++;} } catch(e) {}
+    var deleted = 0;
+    try { localStorage.removeItem('skor_user_' + username.toLowerCase()); deleted++; } catch(e) {}
+    Object.keys(localStorage).filter(function(k){ return k.indexOf('skor_game_') === 0; }).forEach(function(k){
+      try {
+        var g = JSON.parse(localStorage.getItem(k));
+        if ((g.onlinePlayers || []).indexOf(username.toLowerCase()) !== -1) {
+          localStorage.removeItem(k); deleted++;
+        }
+      } catch(e) {}
     });
-    // Delete from Firebase
     if (_db) {
       try { await _db.collection('users').doc(username.toLowerCase()).delete(); deleted++; } catch(e) {}
       try {
-        const snap = await _db.collection('games').where('owner','==',username).get();
-        for (const doc of snap.docs) { try { await doc.ref.delete(); deleted++; } catch(e) {} }
+        var snap = await _db.collection('games').where('owner', '==', username).get();
+        for (var i = 0; i < snap.docs.length; i++) {
+          try { await snap.docs[i].ref.delete(); deleted++; } catch(e) {}
+        }
       } catch(e) {}
     }
-
     closeModal('adminDeleteModal');
     _adminDeleteTarget = null;
-    showToast('Deleted ' + username + ' (' + deleted + ' entries removed)');
-
-    // Clear search results if they showed that user
+    showToast('Deleted ' + username + ' (' + deleted + ' entries)');
     document.getElementById('adminSearchResults').innerHTML = '';
     document.getElementById('adminSearchInput').value = '';
-
-    // Refresh lists
     adminLoadAllUsers();
     adminLoadStorage();
   } catch(e) {
-    showToast('Error deleting account');
+    showToast('Error deleting');
   } finally {
-    btn.textContent = '🗑 Delete Permanently';
-    btn.disabled = false;
+    btn.textContent = '🗑 Delete'; btn.disabled = false;
   }
 }
 
-// ════════════════════════════════════════════════════════
-// INIT ADDITIONS
-// ════════════════════════════════════════════════════════
-loadAppSettings();
+// ── PWA Install ──────────────────────────────────────────
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  _pwaInstallPrompt = e;
+  var banner = document.getElementById('pwaBanner');
+  if (banner) banner.classList.add('show');
+});
+
+async function pwaInstall() {
+  if (!_pwaInstallPrompt) return;
+  _pwaInstallPrompt.prompt();
+  var result = await _pwaInstallPrompt.userChoice;
+  if (result.outcome === 'accepted') {
+    var banner = document.getElementById('pwaBanner');
+    if (banner) banner.classList.remove('show');
+    showToast('Installed! 🎉');
+  }
+  _pwaInstallPrompt = null;
+}
+
+// ── Initial load ─────────────────────────────────────────
+function v11Init() {
+  try {
+    var saved = localStorage.getItem('skor_account');
+    if (saved) {
+      _currentUser = JSON.parse(saved);
+      // Ensure we have a cache entry for ourselves
+      localStorage.setItem('skor_user_' + _currentUser.username.toLowerCase(), JSON.stringify(_currentUser));
+    }
+  } catch(e) {}
+  updateOnlineStatusUI();
+  updateHomeAccountBtn();
+  if (_currentUser) renderAllFriendChips();
+  initFirebase().then(function(ok){
+    if (ok && _currentUser) { try { dbSetUser(_currentUser); } catch(e) {} }
+  });
+}
+v11Init();
 
 // Register Service Worker for PWA
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(e => console.log('SW registration failed:', e));
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('./sw.js').catch(function(e){ console.log('SW failed:', e); });
   });
 }
 
