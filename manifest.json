@@ -1,0 +1,25 @@
+{
+  "name": "Skor Tracker",
+  "short_name": "Skor",
+  "description": "Card game score tracker — Okey 101, Racing Demons, Turkish 51, Gin Rummy, Oklahoma Gin and Leekha.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1565C0",
+  "theme_color": "#1565C0",
+  "icons": [
+    {
+      "src": "./icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
