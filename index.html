@@ -1793,16 +1793,18 @@ function okeyLoadActive() {
   const id = localStorage.getItem('okey101_active');
   if (!id) return false;
   const g = okeyGetArchive().find(g => g.gameId === id);
-  if (!g || g.finished) return false;
+  if (!g || g.finished) { localStorage.removeItem('okey101_active'); return false; }
   // Only auto-resume straight into the game if a round was actually played
   // (entered/edited/deleted) within the last hour. Merely starting a game,
   // tapping Continue/Copy on an old archived game, or just having an old
   // unfinished game sitting around should NOT cause it to silently take
   // over the next time the app opens — the home screen should show instead.
+  // When a game fails this bar we also CLEAR the active flag, so stale state
+  // left in localStorage from before this fix gets cleaned up on first load.
   const ONE_HOUR_MS = 60 * 60 * 1000;
-  if (!g.lastPlayedAt) return false;
+  if (!g.lastPlayedAt) { localStorage.removeItem('okey101_active'); return false; }
   const age = Date.now() - new Date(g.lastPlayedAt).getTime();
-  if (age > ONE_HOUR_MS) return false;
+  if (age > ONE_HOUR_MS) { localStorage.removeItem('okey101_active'); return false; }
   Object.assign(okeyState, JSON.parse(JSON.stringify(g)));
   return true;
 }

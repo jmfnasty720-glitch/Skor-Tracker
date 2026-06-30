@@ -1,5 +1,5 @@
-// Skor Tracker Service Worker V1.3.2
-const CACHE_NAME = 'skor-tracker-v1-3-2';
+// Skor Tracker Service Worker V1.3.3
+const CACHE_NAME = 'skor-tracker-v1-3-3';
 const ASSETS = ['./', './index.html', './manifest.json', './icon.png', './html2canvas_min.js'];
 
 self.addEventListener('install', e => {
