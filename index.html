@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="icon.png">
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="manifest" href="manifest.json">
-<script src="html2canvas.min.js"></script>
+<script src="html2canvas_min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Oswald:wght@500;700&display=swap');
 
@@ -227,6 +227,8 @@ input:focus,select:focus{border-color:var(--blue)}
 
 .home-hero{background:linear-gradient(160deg,var(--blue-dark) 0%,var(--blue) 55%,var(--blue-light) 100%);padding:32px 22px 26px;text-align:center;position:relative;overflow:hidden;flex-shrink:0}
 .home-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 20%,rgba(255,213,79,0.15) 0%,transparent 60%);pointer-events:none}
+.home-account-btn{position:absolute;top:14px;right:14px;z-index:2;background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.25);color:white;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;padding:7px 12px;border-radius:20px;cursor:pointer;backdrop-filter:blur(4px);transition:background 0.15s}
+.home-account-btn:active{background:rgba(255,255,255,0.26)}
 .hero-wordmark{font-family:'Oswald',sans-serif;font-size:42px;font-weight:700;color:white;letter-spacing:3px;line-height:1;position:relative}
 .hero-wordmark span{color:var(--gold)}
 /* ── BRAND LOGO (matches app icon) ── */
@@ -398,19 +400,6 @@ input:focus,select:focus{border-color:var(--blue)}
 .account-username{font-family:'Oswald',sans-serif;font-size:24px;font-weight:700;letter-spacing:0.5px}
 .account-since{font-size:11px;opacity:0.65;margin-top:3px}
 
-.friends-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:white;border-radius:var(--radius-sm);margin-bottom:8px;border:1px solid var(--border)}
-.friends-avatar{width:40px;height:40px;background:var(--blue-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;border:2px solid var(--blue-mid);overflow:hidden}
-.friends-name{font-weight:800;font-size:14px;color:var(--text)}
-
-/* ── ONLINE PLAYER STYLING (neon cyan) ── */
-.online-player-name{color:#00BCD4;font-weight:900;}
-.sps-name.online-player{color:#00E5FF;text-shadow:0 0 4px rgba(0,229,255,0.4)}
-
-/* ── FRIEND CHIPS ON GAME SETUP ── */
-.friend-chip{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;border-radius:20px;background:var(--blue-pale);border:2px solid var(--blue-mid);font-size:12px;font-weight:800;color:var(--blue);cursor:pointer;transition:all 0.15s;font-family:'Nunito',sans-serif}
-.friend-chip:active{transform:scale(0.95)}
-.friend-chip.online-chip{background:rgba(0,188,212,0.1);border-color:#00BCD4;color:#00838F}
-
 /* ── LIVE STANDINGS ── */
 .standings-btn{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:var(--gold);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;white-space:nowrap;letter-spacing:0.3px;margin-top:6px;width:100%;transition:background 0.15s}
 .standings-btn:active{background:rgba(255,255,255,0.2)}
@@ -443,6 +432,7 @@ input:focus,select:focus{border-color:var(--blue)}
 ════════════════════════════════════════════════════════ -->
 <div id="screen-home" class="screen active">
   <div class="home-hero">
+    <button id="homeAccountBtn" class="home-account-btn" onclick="openAccountScreen()">👤 Sign In</button>
     <div class="brand-logo">
       <div class="brand-skor">SK<span class="brand-o">O</span>R</div>
       <div class="brand-bar"></div>
@@ -696,7 +686,6 @@ input:focus,select:focus{border-color:var(--blue)}
       </div>
       <div class="card">
         <div class="card-title">Player Names</div>
-        <div id="okeyFriendChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;"></div>
         <div id="okeyPlayerNameInputs" style="display:flex;flex-direction:column;gap:10px;"></div>
       </div>
       <button class="btn btn-primary btn-lg" onclick="okeyStartGame()">Start Game ▶</button>
@@ -768,7 +757,6 @@ input:focus,select:focus{border-color:var(--blue)}
       </div>
       <div class="card">
         <div class="card-title">Player Names</div>
-        <div id="rdFriendChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;"></div>
         <div id="rdPlayerInputs" style="display:flex;flex-direction:column;gap:10px;"></div>
       </div>
       <button class="btn btn-primary btn-lg" onclick="rdStartGame()">Start Game ▶</button>
@@ -840,7 +828,6 @@ input:focus,select:focus{border-color:var(--blue)}
       </div>
       <div class="card">
         <div class="card-title">Player Names</div>
-        <div id="t51FriendChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;"></div>
         <div id="t51PlayerInputs" style="display:flex;flex-direction:column;gap:10px;"></div>
       </div>
       <button class="btn btn-primary btn-lg" onclick="t51StartGame()">Start Game ▶</button>
@@ -915,7 +902,6 @@ input:focus,select:focus{border-color:var(--blue)}
       <div class="setup-header"><h2>GIN RUMMY</h2><p>2 players · First to 100</p></div>
       <div class="card">
         <div class="card-title">Player Names</div>
-        <div id="ginFriendChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;"></div>
         <div style="display:flex;flex-direction:column;gap:10px;">
           <div class="input-group" style="margin-bottom:0;"><label>Player 1 (goes first)</label><input type="text" id="ginP0" value="Player 1"></div>
           <div class="input-group" style="margin-bottom:0;"><label>Player 2</label><input type="text" id="ginP1" value="Player 2"></div>
@@ -1001,7 +987,6 @@ input:focus,select:focus{border-color:var(--blue)}
       <div class="setup-header"><h2>OKLAHOMA GIN</h2><p>2 players · First to 100</p></div>
       <div class="card">
         <div class="card-title">Player Names</div>
-        <div id="oklaFriendChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;"></div>
         <div style="display:flex;flex-direction:column;gap:10px;">
           <div class="input-group" style="margin-bottom:0;"><label>Player 1 (goes first)</label><input type="text" id="oklaP0" value="Player 1"></div>
           <div class="input-group" style="margin-bottom:0;"><label>Player 2</label><input type="text" id="oklaP1" value="Player 2"></div>
@@ -1096,7 +1081,6 @@ input:focus,select:focus{border-color:var(--blue)}
       </div>
       <div class="card">
         <div class="card-title">Player Names</div>
-        <div id="lkFriendChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;"></div>
         <div id="lkPlayerInputs" style="display:flex;flex-direction:column;gap:10px;"></div>
       </div>
       <button class="btn btn-primary btn-lg" onclick="lkStartGame()">Start Game ▶</button>
@@ -1149,7 +1133,8 @@ input:focus,select:focus{border-color:var(--blue)}
       <div id="okeyRoundSummaryRows"></div>
     </div>
     <div class="confirm-bar">
-      <button class="btn btn-grey" onclick="closeModal('okeyRoundModal')">Cancel</button>
+      <button class="btn btn-grey" onclick="okeyCancelRoundModal()">Cancel</button>
+      <button class="btn btn-danger btn-sm" id="okeyDeleteBtn" onclick="okeyDeleteRound()" style="display:none;flex:0;white-space:nowrap;">🗑 Delete</button>
       <button class="btn btn-primary" onclick="okeyPreviewRound()" id="okeyPreviewBtn">Preview →</button>
       <button class="btn btn-success" onclick="okeyConfirmRound()" id="okeyConfirmBtn" style="display:none;">✔ Confirm</button>
     </div>
@@ -1295,24 +1280,12 @@ input:focus,select:focus{border-color:var(--blue)}
   </div>
   <div id="acct-main-view" style="display:none;">
     <div class="account-hero">
-      <div style="position:relative;width:84px;margin:0 auto 10px;">
-        <div class="account-avatar" id="acctAvatar" onclick="acctOpenPhotoMenu()" style="cursor:pointer;">😎</div>
-        <div style="position:absolute;bottom:0;right:0;background:var(--gold);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,0.3);" onclick="acctOpenPhotoMenu()">✏️</div>
-      </div>
+      <div class="account-avatar" id="acctAvatar" style="margin:0 auto 10px;">😎</div>
       <div class="account-username" id="acctDisplayName">Username</div>
       <div class="account-since" id="acctSince">Member since —</div>
       <div id="acctOnlineBadge" style="display:none;margin-top:6px;background:var(--green);color:white;border-radius:20px;padding:3px 12px;font-size:11px;font-weight:700;display:inline-block;">☁ Online</div>
     </div>
     <div style="padding:16px 14px 100px;">
-      <div class="card">
-        <div class="card-title">Friends</div>
-        <div style="font-size:12px;color:var(--text-light);margin-bottom:10px;">Add friends by their username. They'll show up in your game setup.</div>
-        <div style="display:flex;gap:8px;margin-bottom:12px;">
-          <input type="text" id="addFriendInput" placeholder="Friend's username" style="flex:1;margin-bottom:0;">
-          <button class="btn btn-primary btn-sm" onclick="acctAddFriend()" style="white-space:nowrap;">Add ＋</button>
-        </div>
-        <div id="friendsList"><div style="color:var(--text-light);font-size:13px;text-align:center;padding:10px 0;">No friends yet.</div></div>
-      </div>
       <div class="card">
         <div class="card-title">Recent Games</div>
         <div id="onlineGamesList"><div style="color:var(--text-light);font-size:13px;text-align:center;padding:10px 0;">No games yet.</div></div>
@@ -1332,28 +1305,6 @@ input:focus,select:focus{border-color:var(--blue)}
     <div class="confirm-bar">
       <button class="btn btn-grey" onclick="closeModal('adminDeleteModal')">Cancel</button>
       <button class="btn btn-danger" id="adminDeleteConfirmBtn" onclick="adminConfirmDelete()">🗑 Delete</button>
-    </div>
-  </div>
-</div>
-
-<!-- Photo/Avatar picker modal -->
-<div class="modal-overlay" id="photoPickerModal">
-  <div class="modal">
-    <div class="modal-handle"></div>
-    <div class="modal-title">📸 Profile Photo</div>
-    <p class="modal-sub">Upload a photo or pick an emoji</p>
-    <div style="text-align:center;margin-bottom:16px;">
-      <div id="photoPreview" style="width:80px;height:80px;border-radius:50%;margin:0 auto 12px;background:var(--blue-pale);display:flex;align-items:center;justify-content:center;font-size:38px;border:3px solid var(--blue-mid);overflow:hidden;"></div>
-      <label class="btn btn-primary btn-sm" style="cursor:pointer;display:inline-flex;">
-        📁 Upload Photo
-        <input type="file" id="photoFileInput" accept="image/*" style="display:none;" onchange="acctHandlePhotoUpload(event)">
-      </label>
-    </div>
-    <div style="font-size:12px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Or choose an emoji</div>
-    <div id="emojiGrid" style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:16px;"></div>
-    <div class="confirm-bar">
-      <button class="btn btn-grey" onclick="closeModal('photoPickerModal')">Cancel</button>
-      <button class="btn btn-success" onclick="acctSavePhoto()">✔ Save</button>
     </div>
   </div>
 </div>
@@ -1943,17 +1894,42 @@ function okeyToggleX2() {
   showToast(okeyState.okeyX2Active ? '🔥 OKEY ×2 ACTIVE' : 'OKEY ×2 deactivated');
 }
 
-function okeyOpenRoundModal() {
+let okeyEditModalX2 = false; // x2 value driving the currently-open modal (new-round uses live toggle; edit uses the round's own stored x2)
+
+function okeyOpenRoundModal(editIdx) {
+  const isEdit = typeof editIdx === 'number' && editIdx >= 0;
+  okeyEditingRoundIdx = isEdit ? editIdx : -1;
+  const existing = isEdit ? okeyState.rounds[editIdx] : null;
+
   okeyRoundData = {};
-  okeyState.players.forEach((_,i) => { okeyRoundData[i]={type:'normal',value:0,cezas:0}; });
-  const rn = okeyState.rounds.length+1;
-  document.getElementById('okeyRoundTitle').textContent = `Round ${rn}${okeyState.okeyX2Active?' 🔥 ×2':''}`;
+  okeyState.players.forEach((_,i) => {
+    if (existing) {
+      okeyRoundData[i] = {
+        type: (existing.flags && existing.flags[i]) || 'normal',
+        value: (existing.rawValues && existing.rawValues[i]) || 0,
+        cezas: (existing.cezas && existing.cezas[i]) || 0
+      };
+    } else {
+      okeyRoundData[i] = {type:'normal',value:0,cezas:0};
+    }
+  });
+
+  // Editing displays/uses whatever ×2 state that round was actually recorded
+  // with. We never touch the live okeyState.okeyX2Active toggle here, so
+  // cancelling an edit can't corrupt the in-progress new-round toggle state.
+  okeyEditModalX2 = isEdit ? !!existing.x2 : okeyState.okeyX2Active;
+
+  const rn = isEdit ? editIdx+1 : okeyState.rounds.length+1;
+  document.getElementById('okeyRoundTitle').textContent = isEdit
+    ? `Edit Round ${rn}${okeyEditModalX2?' 🔥 ×2':''}`
+    : `Round ${rn}${okeyEditModalX2?' 🔥 ×2':''}`;
   document.getElementById('okeyRoundSummary').style.display='none';
   document.getElementById('okeyPreviewBtn').style.display='';
   document.getElementById('okeyConfirmBtn').style.display='none';
+  document.getElementById('okeyDeleteBtn').style.display = isEdit ? '' : 'none';
   document.getElementById('okeyRoundCards').innerHTML = okeyState.players.map((p,i)=>`
     <div class="player-round-card" id="oprc_${i}">
-      <div class="prc-name"><span>${p}</span>${okeyState.okeyX2Active?'<span style="font-size:11px;background:var(--accent);color:white;border-radius:20px;padding:2px 8px;">×2 ON</span>':''}</div>
+      <div class="prc-name"><span>${p}</span>${okeyEditModalX2?'<span style="font-size:11px;background:var(--accent);color:white;border-radius:20px;padding:2px 8px;">×2 ON</span>':''}</div>
       <div class="round-options">
         <button class="ropt-btn" id="oropt_win_${i}" onclick="okeySetType(${i},'win')">🏆 Won (−101)</button>
         <button class="ropt-btn" id="oropt_noopen_${i}" onclick="okeySetType(${i},'noopen')">🚫 No Open (202)</button>
@@ -1973,7 +1949,35 @@ function okeyOpenRoundModal() {
         </div>
       </div>
     </div>`).join('');
+
+  // Restore visual state (active button styling, ceza badge, manual input value)
+  // for every player whose stored type isn't 'normal'.
+  okeyState.players.forEach((_,i) => {
+    const d = okeyRoundData[i];
+    document.getElementById('oceza_'+i).textContent = d.cezas;
+    if (d.type !== 'normal') {
+      const btn = document.getElementById(`oropt_${d.type}_${i}`);
+      document.getElementById(`oprc_${i}`).classList.toggle('winner-card', d.type==='win');
+      if (btn) {
+        if (d.type==='win') btn.className='ropt-btn active-win';
+        else if (d.type==='noopen') btn.className='ropt-btn active-noopen';
+        else if (d.type==='cift') { btn.className='ropt-btn active-cift'; document.getElementById(`omwlabel_${i}`).textContent='Hand points (will be doubled)'; }
+        else if (d.type==='manual') { btn.className='ropt-btn active-manual'; document.getElementById(`omwlabel_${i}`).textContent='Points this round'; }
+      }
+      if (d.type==='cift'||d.type==='manual') {
+        document.getElementById(`omwrap_${i}`).classList.add('show');
+        const inp = document.getElementById(`omanual_${i}`);
+        if (inp) inp.value = d.value || '';
+      }
+    }
+  });
+
   document.getElementById('okeyRoundModal').classList.add('open');
+}
+
+function okeyCancelRoundModal() {
+  okeyEditingRoundIdx = -1;
+  closeModal('okeyRoundModal');
 }
 
 function okeyCeza(idx, delta) {
@@ -2010,7 +2014,7 @@ function okeyResetPreview() {
 }
 
 function okeyCalcScore(idx) {
-  const d=okeyRoundData[idx]; const x2=okeyState.okeyX2Active; const cz=(d.cezas||0)*101;
+  const d=okeyRoundData[idx]; const x2=okeyEditModalX2; const cz=(d.cezas||0)*101;
   let base=0;
   if(d.type==='win') base=-101;
   else if(d.type==='noopen') base=202;
@@ -2025,7 +2029,7 @@ function okeyPreviewRound() {
     const score=okeyCalcScore(i); const d=okeyRoundData[i];
     let desc=d.type==='win'?'🏆 Won':d.type==='noopen'?'🚫 No Open':d.type==='cift'?'✌️ Çift ×2':d.type==='manual'?'✏️ Manual':'— No change';
     if(d.cezas>0) desc+=` + ${d.cezas} Ceza`;
-    if(okeyState.okeyX2Active&&(d.type!=='normal'||d.cezas>0)) desc+=' [×2]';
+    if(okeyEditModalX2&&(d.type!=='normal'||d.cezas>0)) desc+=' [×2]';
     const cls=score<0?'negative':score>100?'penalty':'';
     html+=`<div class="round-summary-row"><div><span class="rsn">${p}</span><br><span style="font-size:11px;color:var(--text-light);">${desc}</span></div><div class="rsp ${cls}">${score>0?'+':''}${score}</div></div>`;
   });
@@ -2039,22 +2043,46 @@ function okeyConfirmRound() {
   const scores=okeyState.players.map((_,i)=>okeyCalcScore(i));
   const flags=okeyState.players.map((_,i)=>okeyRoundData[i].type);
   const cezas=okeyState.players.map((_,i)=>okeyRoundData[i].cezas||0);
-  okeyState.rounds.push({scores,flags,cezas,x2:okeyState.okeyX2Active});
-  okeyState.okeyX2Active=false;
-  closeModal('okeyRoundModal');
-  okeySave(); okeyRenderGame();
-  showToast(`Round ${okeyState.rounds.length} recorded ✔`);
+  // Store the raw value the user typed for manual/çift (before ceza/×2 are
+  // applied) so a later edit can rebuild the exact same modal state instead
+  // of trying to reverse-engineer it out of the final computed score.
+  const rawValues=okeyState.players.map((_,i)=>{
+    const d=okeyRoundData[i];
+    if (d.type==='manual'||d.type==='cift') return parseInt(document.getElementById(`omanual_${i}`)?.value)||0;
+    return 0;
+  });
+  if (okeyEditingRoundIdx >= 0) {
+    // Editing an existing round in place — keep its position, replace its
+    // contents, and save the x2 state that modal was actually showing
+    // (okeyEditModalX2), never the live new-round toggle.
+    okeyState.rounds[okeyEditingRoundIdx] = {scores,flags,cezas,rawValues,x2:okeyEditModalX2};
+    closeModal('okeyRoundModal');
+    okeySave(); okeyRenderGame();
+    showToast(`Round ${okeyEditingRoundIdx+1} updated ✔`);
+    okeyEditingRoundIdx = -1;
+  } else {
+    okeyState.rounds.push({scores,flags,cezas,rawValues,x2:okeyState.okeyX2Active});
+    okeyState.okeyX2Active=false;
+    closeModal('okeyRoundModal');
+    okeySave(); okeyRenderGame();
+    showToast(`Round ${okeyState.rounds.length} recorded ✔`);
+  }
 }
 
 function okeyOpenEditScore(ri) {
   if(okeyState.finished) return;
-  okeyEditingRoundIdx=ri;
-  const round=okeyState.rounds[ri];
-  document.getElementById('editScoreTitle').textContent=`Edit Round ${ri+1}`;
-  document.getElementById('editScoreRows').innerHTML=okeyState.players.map((p,i)=>
-    `<div class="edit-score-row"><div class="esr-name">${p}</div><input type="number" id="escore_${i}" value="${round.scores[i]}" style="width:95px;text-align:center;"></div>`).join('');
-  document.getElementById('editScoreModal').dataset.module='okey101';
-  document.getElementById('editScoreModal').classList.add('open');
+  okeyOpenRoundModal(ri);
+}
+
+function okeyDeleteRound() {
+  if (okeyEditingRoundIdx < 0) return;
+  const ri = okeyEditingRoundIdx;
+  if (!confirm(`Delete Round ${ri+1}? This cannot be undone.`)) return;
+  okeyState.rounds.splice(ri, 1);
+  okeyEditingRoundIdx = -1;
+  closeModal('okeyRoundModal');
+  okeySave(); okeyRenderGame();
+  showToast('Round deleted');
 }
 
 function okeyOpenEditNamesModal() {
@@ -3177,9 +3205,9 @@ async function dbSaveGame(entry) {
   if (_db && _isNetworkOnline) {
     try {
       await _db.collection('games').doc(entry.gameId).set(entry);
-      var players = entry.onlinePlayers || [];
-      for (var i = 0; i < players.length; i++) {
-        try { await _db.collection('users').doc(players[i]).collection('games').doc(entry.gameId).set({gameId: entry.gameId, updatedAt: entry.updatedAt}); } catch(e) {}
+      // Index under the signed-in owner's subcollection so their games list finds it.
+      if (entry.owner) {
+        try { await _db.collection('users').doc(entry.owner.toLowerCase()).collection('games').doc(entry.gameId).set({gameId: entry.gameId, updatedAt: entry.updatedAt}); } catch(e) {}
       }
     } catch(e) {}
   }
@@ -3204,7 +3232,7 @@ async function dbGetUserGames(username) {
     for (var j = 0; j < keys.length; j++) {
       try {
         var g = JSON.parse(localStorage.getItem(keys[j]));
-        if (g && (g.onlinePlayers || []).indexOf(username.toLowerCase()) !== -1) results.push(g);
+        if (g && g.owner && g.owner.toLowerCase() === username.toLowerCase()) results.push(g);
       } catch(e) {}
     }
   } catch(e) {}
@@ -3212,26 +3240,11 @@ async function dbGetUserGames(username) {
 }
 
 // ── Is this player an online account? ────────────────────
-function isPlayerOnline(playerName) {
-  if (!_currentUser || !playerName) return false;
-  if (playerName.toLowerCase() === _currentUser.username.toLowerCase()) return true;
-  var friends = _currentUser.friends || [];
-  for (var i = 0; i < friends.length; i++) {
-    if (friends[i].toLowerCase() === playerName.toLowerCase()) {
-      // Check if friend has an account in cache
-      if (localStorage.getItem('skor_user_' + friends[i].toLowerCase())) return true;
-    }
-  }
-  return false;
-}
-
 // ── Game sync (called from save functions below) ────────
+// Simplified model: if you're signed in, every game you play syncs to your
+// account automatically. No friends/online-contact distinction.
 async function syncGameOnline(gameLabel, players, totals, gameId, higherIsBetter) {
   if (!_currentUser) return;
-  var onlinePlayers = [];
-  for (var i = 0; i < players.length; i++) {
-    if (isPlayerOnline(players[i])) onlinePlayers.push(players[i].toLowerCase());
-  }
   var entry = {
     gameId: gameId,
     gameLabel: gameLabel,
@@ -3239,7 +3252,6 @@ async function syncGameOnline(gameLabel, players, totals, gameId, higherIsBetter
     totals: totals,
     higherIsBetter: higherIsBetter,
     owner: _currentUser.username,
-    onlinePlayers: onlinePlayers,
     updatedAt: new Date().toISOString()
   };
   try { await dbSaveGame(entry); } catch(e) {}
@@ -3327,22 +3339,20 @@ async function acctLogin() {
       }
       _currentUser = JSON.parse(JSON.stringify(existing));
     } else {
-      _currentUser = { username: username, pin: pin, joinedAt: new Date().toISOString(), friends: [], avatar: acctPickAvatar(username), photo: null };
+      _currentUser = { username: username, pin: pin, joinedAt: new Date().toISOString(), avatar: acctPickAvatar(username) };
       await dbSetUser(_currentUser);
     }
     localStorage.setItem('skor_account', JSON.stringify(_currentUser));
     renderAccountMain();
-    renderAllFriendChips();
     updateHomeAccountBtn();
     updateOnlineStatusUI();
     showToast('Welcome, ' + _currentUser.username + '! ✔');
   } catch(e) {
     console.warn('Login error:', e);
-    _currentUser = { username: username, pin: pin, joinedAt: new Date().toISOString(), friends: [], avatar: acctPickAvatar(username), photo: null };
+    _currentUser = { username: username, pin: pin, joinedAt: new Date().toISOString(), avatar: acctPickAvatar(username) };
     try { localStorage.setItem('skor_account', JSON.stringify(_currentUser)); } catch(err) {}
     try { localStorage.setItem('skor_user_' + username.toLowerCase(), JSON.stringify(_currentUser)); } catch(err) {}
     renderAccountMain();
-    renderAllFriendChips();
     updateHomeAccountBtn();
     showToast('Saved locally');
   } finally {
@@ -3356,7 +3366,6 @@ function acctSignOut() {
   try { localStorage.removeItem('skor_account'); } catch(e) {}
   document.getElementById('acct-login-view').style.display = '';
   document.getElementById('acct-main-view').style.display = 'none';
-  renderAllFriendChips();
   updateHomeAccountBtn();
   updateOnlineStatusUI();
   showToast('Signed out');
@@ -3376,77 +3385,12 @@ function renderAccountMain() {
   document.getElementById('acct-login-view').style.display = 'none';
   document.getElementById('acct-main-view').style.display = '';
   var av = document.getElementById('acctAvatar');
-  if (_currentUser.photo) {
-    av.innerHTML = '<img src="' + _currentUser.photo + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';
-  } else {
-    av.textContent = _currentUser.avatar || '😎';
-  }
+  av.textContent = _currentUser.avatar || '😎';
   document.getElementById('acctDisplayName').textContent = _currentUser.username;
   var d = new Date(_currentUser.joinedAt);
   document.getElementById('acctSince').textContent = 'Member since ' + d.toLocaleDateString('en-AU', {month:'long', year:'numeric'});
   updateOnlineStatusUI();
-  renderFriendsList();
   loadUserGames();
-}
-
-// ── Friends ──────────────────────────────────────────────
-async function acctAddFriend() {
-  if (!_currentUser) return;
-  var fn = (document.getElementById('addFriendInput').value || '').trim();
-  if (!fn) return;
-  if (fn.toLowerCase() === _currentUser.username.toLowerCase()) { showToast("That's you!"); return; }
-  var friends = _currentUser.friends || [];
-  for (var i = 0; i < friends.length; i++) {
-    if (friends[i].toLowerCase() === fn.toLowerCase()) { showToast('Already in your list'); return; }
-  }
-
-  var exists = false;
-  try { var u = await dbGetUser(fn); exists = !!u; } catch(e) {}
-
-  _currentUser.friends.push(fn);
-  try { localStorage.setItem('skor_account', JSON.stringify(_currentUser)); } catch(e) {}
-  try { await dbSetUser(_currentUser); } catch(e) {}
-  document.getElementById('addFriendInput').value = '';
-  renderFriendsList();
-  renderAllFriendChips();
-  showToast(exists ? 'Friend added! 🤝' : fn + ' added as contact');
-}
-
-function acctRemoveFriend(fn) {
-  if (!confirm('Remove ' + fn + '?')) return;
-  _currentUser.friends = (_currentUser.friends || []).filter(function(f){ return f.toLowerCase() !== fn.toLowerCase(); });
-  try { localStorage.setItem('skor_account', JSON.stringify(_currentUser)); } catch(e) {}
-  try { dbSetUser(_currentUser); } catch(e) {}
-  renderFriendsList();
-  renderAllFriendChips();
-  showToast('Removed ' + fn);
-}
-
-async function renderFriendsList() {
-  var el = document.getElementById('friendsList');
-  var friends = _currentUser ? (_currentUser.friends || []) : [];
-  if (!friends.length) {
-    el.innerHTML = '<div style="color:var(--text-light);font-size:13px;text-align:center;padding:10px 0;">No friends yet — add some!</div>';
-    return;
-  }
-  var html = '';
-  for (var i = 0; i < friends.length; i++) {
-    var fn = friends[i];
-    var hasAccount = !!localStorage.getItem('skor_user_' + fn.toLowerCase());
-    if (!hasAccount && _db && _isNetworkOnline) {
-      try { var u = await dbGetUser(fn); hasAccount = !!u; } catch(e) {}
-    }
-    var nameClass = hasAccount ? 'online-player-name' : '';
-    var badge = hasAccount
-      ? '<span style="background:rgba(0,188,212,0.15);color:#00838F;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:800;margin-left:6px;">Online</span>'
-      : '<span style="background:#eee;color:#999;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:800;margin-left:6px;">Contact</span>';
-    html += '<div class="friends-item">' +
-      '<div class="friends-avatar">' + acctPickAvatar(fn) + '</div>' +
-      '<div><div class="friends-name ' + nameClass + '">' + fn + badge + '</div></div>' +
-      '<button class="btn btn-sm btn-grey" style="margin-left:auto;" onclick="acctRemoveFriend(\'' + fn.replace(/'/g, "\\'") + '\')">Remove</button>' +
-      '</div>';
-  }
-  el.innerHTML = html;
 }
 
 async function loadUserGames() {
@@ -3465,9 +3409,8 @@ async function loadUserGames() {
       var sorted = g.players.map(function(p, idx){ return {p: p, s: g.totals[idx]}; })
         .sort(function(a,b){ return g.higherIsBetter ? b.s - a.s : a.s - b.s; });
       var chips = sorted.map(function(item, ri){
-        var isOnline = isPlayerOnline(item.p);
-        var bg = ri === 0 ? 'rgba(255,213,79,0.2)' : (isOnline ? 'rgba(0,188,212,0.1)' : 'var(--blue-pale)');
-        var col = isOnline ? '#00838F' : 'var(--blue)';
+        var bg = ri === 0 ? 'rgba(255,213,79,0.2)' : 'var(--blue-pale)';
+        var col = 'var(--blue)';
         return '<span style="background:' + bg + ';color:' + col + ';border-radius:20px;padding:2px 9px;font-size:11px;font-weight:800;display:inline-block;margin-right:4px;margin-bottom:4px;">' +
           (ri === 0 ? '🏆 ' : '') + item.p + ': ' + item.s + '</span>';
       }).join('');
@@ -3480,139 +3423,6 @@ async function loadUserGames() {
   } catch(e) {
     el.innerHTML = '<div style="color:var(--text-light);font-size:12px;text-align:center;padding:8px;">Could not load games.</div>';
   }
-}
-
-// ── Friend chips on game setup ───────────────────────────
-function renderFriendChips(containerId, inputIds) {
-  var el = document.getElementById(containerId);
-  if (!el) return;
-  if (!_currentUser || !(_currentUser.friends || []).length) { el.innerHTML = ''; return; }
-  var html = '';
-  for (var i = 0; i < _currentUser.friends.length; i++) {
-    var fn = _currentUser.friends[i];
-    var isOnline = !!localStorage.getItem('skor_user_' + fn.toLowerCase());
-    var safe = fn.replace(/'/g, "\\'");
-    html += '<button class="friend-chip ' + (isOnline ? 'online-chip' : '') + '" onclick="addFriendToInput(\'' + safe + '\', ' + JSON.stringify(inputIds) + ')">' +
-      (isOnline ? '🌐 ' : '👤 ') + fn + '</button>';
-  }
-  el.innerHTML = html;
-}
-
-function addFriendToInput(name, inputIds) {
-  for (var i = 0; i < inputIds.length; i++) {
-    var el = document.getElementById(inputIds[i]);
-    if (el && !el.value.trim()) { el.value = name; styleInputIfOnline(el, name); return; }
-  }
-  // All filled — overwrite the last one
-  var last = document.getElementById(inputIds[inputIds.length - 1]);
-  if (last) { last.value = name; styleInputIfOnline(last, name); }
-}
-
-function styleInputIfOnline(el, name) {
-  if (isPlayerOnline(name)) { el.style.color = '#00838F'; el.style.fontWeight = '900'; }
-  else { el.style.color = ''; el.style.fontWeight = ''; }
-}
-
-function renderAllFriendChips() {
-  var okeyCount = (typeof okeyPlayerCount !== 'undefined') ? okeyPlayerCount : 3;
-  var rdCount = (typeof rdPlayerCount !== 'undefined') ? rdPlayerCount : 4;
-  var t51C = (typeof t51Count !== 'undefined') ? t51Count : 3;
-  var okeyIds = []; for (var i = 0; i < okeyCount; i++) okeyIds.push('okeyPname' + i);
-  var rdIds = []; for (var j = 0; j < rdCount; j++) rdIds.push('rdPname' + j);
-  var t51Ids = []; for (var k = 0; k < t51C; k++) t51Ids.push('t51Pname' + k);
-  renderFriendChips('okeyFriendChips', okeyIds);
-  renderFriendChips('rdFriendChips', rdIds);
-  renderFriendChips('t51FriendChips', t51Ids);
-  renderFriendChips('ginFriendChips', ['ginP0','ginP1']);
-  renderFriendChips('oklaFriendChips', ['oklaP0','oklaP1']);
-  renderFriendChips('lkFriendChips', ['lkPname0','lkPname1','lkPname2','lkPname3']);
-}
-
-// Re-render chips whenever player count changes (patch the count functions)
-if (typeof okeySetPlayerCount === 'function') {
-  var _origOkeySetPC = okeySetPlayerCount;
-  okeySetPlayerCount = function(n) {
-    _origOkeySetPC(n);
-    var ids = []; for (var i = 0; i < n; i++) ids.push('okeyPname' + i);
-    renderFriendChips('okeyFriendChips', ids);
-  };
-}
-if (typeof rdRenderRDInputs === 'function') {
-  var _origRdRender = rdRenderRDInputs;
-  rdRenderRDInputs = function() {
-    _origRdRender();
-    var n = (typeof rdPlayerCount !== 'undefined') ? rdPlayerCount : 4;
-    var ids = []; for (var i = 0; i < n; i++) ids.push('rdPname' + i);
-    renderFriendChips('rdFriendChips', ids);
-  };
-}
-if (typeof t51SetCount === 'function') {
-  var _origT51SC = t51SetCount;
-  t51SetCount = function(n) {
-    _origT51SC(n);
-    var ids = []; for (var i = 0; i < n; i++) ids.push('t51Pname' + i);
-    renderFriendChips('t51FriendChips', ids);
-  };
-}
-
-// ── Profile photo ────────────────────────────────────────
-var AVATAR_EMOJIS = ['😎','🎲','🃏','🏆','🎯','🦊','🐯','🦁','🐸','🦅','🌟','🔥','⚡','🎳','🎮','🦄','🐼','🦸','🧑‍💻','🎸','🤖','👑','💎','🌈'];
-var _pendingPhoto = null;
-var _pendingEmoji = null;
-
-function acctOpenPhotoMenu() {
-  _pendingPhoto = null; _pendingEmoji = null;
-  var preview = document.getElementById('photoPreview');
-  if (_currentUser && _currentUser.photo) {
-    preview.innerHTML = '<img src="' + _currentUser.photo + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';
-  } else {
-    preview.textContent = (_currentUser && _currentUser.avatar) || '😎';
-    preview.style.fontSize = '38px';
-  }
-  var grid = document.getElementById('emojiGrid');
-  grid.innerHTML = AVATAR_EMOJIS.map(function(e){
-    return '<button onclick="selectEmoji(\'' + e + '\')" style="font-size:28px;padding:8px;border:2px solid transparent;border-radius:10px;background:var(--off-white);cursor:pointer;" id="eav_' + e + '">' + e + '</button>';
-  }).join('');
-  document.getElementById('photoFileInput').value = '';
-  document.getElementById('photoPickerModal').classList.add('open');
-}
-
-function selectEmoji(e) {
-  _pendingEmoji = e; _pendingPhoto = null;
-  var preview = document.getElementById('photoPreview');
-  preview.innerHTML = ''; preview.textContent = e; preview.style.fontSize = '38px';
-  document.querySelectorAll('[id^="eav_"]').forEach(function(b){ b.style.borderColor = 'transparent'; });
-  var b = document.getElementById('eav_' + e);
-  if (b) b.style.borderColor = 'var(--blue)';
-}
-
-function acctHandlePhotoUpload(event) {
-  var file = event.target.files[0];
-  if (!file) return;
-  if (file.size > 500000) {
-    showToast('Photo too large (max 500KB)');
-    return;
-  }
-  var reader = new FileReader();
-  reader.onload = function(e) {
-    _pendingPhoto = e.target.result;
-    _pendingEmoji = null;
-    var preview = document.getElementById('photoPreview');
-    preview.innerHTML = '<img src="' + _pendingPhoto + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';
-  };
-  reader.readAsDataURL(file);
-}
-
-async function acctSavePhoto() {
-  if (!_currentUser) return;
-  if (_pendingPhoto) { _currentUser.photo = _pendingPhoto; }
-  else if (_pendingEmoji) { _currentUser.avatar = _pendingEmoji; _currentUser.photo = null; }
-  else { closeModal('photoPickerModal'); return; }
-  try { localStorage.setItem('skor_account', JSON.stringify(_currentUser)); } catch(e) {}
-  try { await dbSetUser(_currentUser); } catch(e) {}
-  closeModal('photoPickerModal');
-  renderAccountMain();
-  showToast('Photo updated ✔');
 }
 
 // ── Live Standings ───────────────────────────────────────
@@ -3642,7 +3452,7 @@ function showLiveStandings(gameKey) {
     var isFirst = rank === 0;
     var isLast = rank === indexed.length - 1 && indexed.length > 1;
     var emoji = isFirst ? '🏆' : isLast ? '💩' : (emojis[rank] || '');
-    var nameClass = (isFirst ? 'gold ' : '') + (isPlayerOnline(p.name) ? 'online-player-name' : '');
+    var nameClass = (isFirst ? 'gold ' : '');
     return '<div class="standings-modal-row ' + (isFirst ? 's-rank-1' : (isLast ? 's-rank-last' : '')) + '">' +
       '<div class="s-rank-num ' + (isFirst ? 'gold' : '') + '">' + (rank+1) + '</div>' +
       '<div class="s-emoji">' + emoji + '</div>' +
@@ -3718,7 +3528,7 @@ async function adminCountGames(username) {
   }
   var n = 0;
   Object.keys(localStorage).filter(function(k){ return k.indexOf('skor_game_') === 0; }).forEach(function(k){
-    try { var g = JSON.parse(localStorage.getItem(k)); if ((g.onlinePlayers || []).indexOf(username) !== -1) n++; } catch(e) {}
+    try { var g = JSON.parse(localStorage.getItem(k)); if (g.owner && g.owner.toLowerCase() === username.toLowerCase()) n++; } catch(e) {}
   });
   return n;
 }
@@ -3789,8 +3599,7 @@ async function adminLoadAllUsers() {
 
 function adminUserCard(u, gameCount) {
   var joined = u.joinedAt ? new Date(u.joinedAt).toLocaleDateString('en-AU', {day:'numeric',month:'short',year:'numeric'}) : 'Unknown';
-  var friendCount = (u.friends || []).length;
-  var avatar = u.photo ? '<img src="' + u.photo + '" style="width:38px;height:38px;border-radius:50%;object-fit:cover;">' : (u.avatar || '😎');
+  var avatar = u.avatar || '😎';
   var locTag = u.localOnly ? '<span style="background:#fff3e0;color:#e65100;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:800;margin-left:4px;">Local</span>' : '';
   var safeName = u.username.replace(/'/g, "\\'");
   return '<div style="border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px;background:white;">' +
@@ -3801,7 +3610,6 @@ function adminUserCard(u, gameCount) {
     '<button class="btn btn-sm btn-danger" onclick="adminPromptDelete(\'' + safeName + '\')">🗑</button></div>' +
     '<div style="display:flex;gap:8px;flex-wrap:wrap;">' +
     '<span style="background:var(--blue-pale);color:var(--blue);border-radius:20px;padding:2px 9px;font-size:11px;font-weight:700;">🎮 ' + gameCount + ' game' + (gameCount !== 1 ? 's' : '') + '</span>' +
-    '<span style="background:var(--green-light);color:var(--green);border-radius:20px;padding:2px 9px;font-size:11px;font-weight:700;">👥 ' + friendCount + ' friend' + (friendCount !== 1 ? 's' : '') + '</span>' +
     '</div></div>';
 }
 
@@ -3851,7 +3659,7 @@ async function adminConfirmDelete() {
     Object.keys(localStorage).filter(function(k){ return k.indexOf('skor_game_') === 0; }).forEach(function(k){
       try {
         var g = JSON.parse(localStorage.getItem(k));
-        if ((g.onlinePlayers || []).indexOf(username.toLowerCase()) !== -1) {
+        if (g.owner && g.owner.toLowerCase() === username.toLowerCase()) {
           localStorage.removeItem(k); deleted++;
         }
       } catch(e) {}
@@ -3911,7 +3719,6 @@ function v11Init() {
   } catch(e) {}
   updateOnlineStatusUI();
   updateHomeAccountBtn();
-  if (_currentUser) renderAllFriendChips();
   initFirebase().then(function(ok){
     if (ok && _currentUser) { try { dbSetUser(_currentUser); } catch(e) {} }
   });
