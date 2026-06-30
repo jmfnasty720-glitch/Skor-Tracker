@@ -1794,6 +1794,15 @@ function okeyLoadActive() {
   if (!id) return false;
   const g = okeyGetArchive().find(g => g.gameId === id);
   if (!g || g.finished) return false;
+  // Only auto-resume straight into the game if a round was actually played
+  // (entered/edited/deleted) within the last hour. Merely starting a game,
+  // tapping Continue/Copy on an old archived game, or just having an old
+  // unfinished game sitting around should NOT cause it to silently take
+  // over the next time the app opens — the home screen should show instead.
+  const ONE_HOUR_MS = 60 * 60 * 1000;
+  if (!g.lastPlayedAt) return false;
+  const age = Date.now() - new Date(g.lastPlayedAt).getTime();
+  if (age > ONE_HOUR_MS) return false;
   Object.assign(okeyState, JSON.parse(JSON.stringify(g)));
   return true;
 }
@@ -2056,6 +2065,7 @@ function okeyConfirmRound() {
     // contents, and save the x2 state that modal was actually showing
     // (okeyEditModalX2), never the live new-round toggle.
     okeyState.rounds[okeyEditingRoundIdx] = {scores,flags,cezas,rawValues,x2:okeyEditModalX2};
+    okeyState.lastPlayedAt = new Date().toISOString();
     closeModal('okeyRoundModal');
     okeySave(); okeyRenderGame();
     showToast(`Round ${okeyEditingRoundIdx+1} updated ✔`);
@@ -2063,6 +2073,7 @@ function okeyConfirmRound() {
   } else {
     okeyState.rounds.push({scores,flags,cezas,rawValues,x2:okeyState.okeyX2Active});
     okeyState.okeyX2Active=false;
+    okeyState.lastPlayedAt = new Date().toISOString();
     closeModal('okeyRoundModal');
     okeySave(); okeyRenderGame();
     showToast(`Round ${okeyState.rounds.length} recorded ✔`);
@@ -2079,6 +2090,7 @@ function okeyDeleteRound() {
   const ri = okeyEditingRoundIdx;
   if (!confirm(`Delete Round ${ri+1}? This cannot be undone.`)) return;
   okeyState.rounds.splice(ri, 1);
+  okeyState.lastPlayedAt = new Date().toISOString();
   okeyEditingRoundIdx = -1;
   closeModal('okeyRoundModal');
   okeySave(); okeyRenderGame();
